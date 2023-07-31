@@ -1,0 +1,4 @@
+Se desea generar una tienda online que venda uniformes para corredores de Formula 1
+Cada uniforme se compone por, el traje, los guantes y los zapatos, donde cada uno de ellos
+posee información de talla, color, precio, descripción e imagen que será mostrada en la página web.
+Un uniforme le pertence a una sola escudería la cual se identifica por un nombre, a su vez una escuderia tiene uno o varios patrocinadores, pero estos últimos, solo pueden patrocinar a una escudería. Además, el uniforme debe contener el logotipo tanto de la escuderia a la que pertenece, como de todos los patrocinadores de su escuderia.
