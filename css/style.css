@@ -1,16 +1,16 @@
 :root {
-    --bg-color-primary: #070707;
-    --bg-color-secondary: #0f0f0f;
-    --bg-color-card: #131718;
-    --bg-color-btn: #006494;
-    --bg-color-btn-menu: transparent;
-    --bg-color-btn-menu--selected: #272727;
-    --color-horizontal-line: #3f3f3f;
-    --color-text: #f1f1f1;
-    --color-text--disabled: #717171;
     --color-state-negative: #cb0000;
     --color-state-positive: #00a513;
     --color-state-alert: #daaa2c;
+    --bg-color-primary: #070707;
+    --bg-color-secondary: #0f0f0f;
+    --bg-color-card: #131718;
+    --color-text: #f1f1f1;
+    --color-text--disabled: #717171;
+    --bg-color-btn: #006494;
+    --bg-color-btn-selectable: transparent;
+    --bg-color-btn-selectable--active: #272727;
+    --color-horizontal-line: #3f3f3f;
     --border-radius: 8px;
 }
 
@@ -21,6 +21,11 @@
 body {
     background-color: var(--bg-color-primary);
     color: var(--color-text);
+}
+
+.bg-login {
+    /* background-image: url('../assets/img/bg-login.jpg'); */
+    background-size: cover;
 }
 
 img.logo {
@@ -34,8 +39,9 @@ img.logo {
 }
 
 .form {
-    margin-left: auto;
-    margin-right: auto;
+    --margin-horizontal: auto;
+    margin-left: var(--margin-horizontal);
+    margin-right: var(--margin-horizontal);
     padding: 10px 20px;
     background-color: var(--bg-color-secondary);
     border-radius: var(--border-radius);
@@ -62,6 +68,26 @@ img.logo {
 
 .form-group {
     margin-bottom: 25px;
+}
+
+.form-msg {
+    --padding-vertical: 15px;
+    display: none;
+    margin-top: 20px;
+    padding-top: var(--padding-vertical);
+    padding-bottom: var(--padding-vertical);
+}
+
+.form-msg--active {
+    display: block;
+}
+
+.form-msg--success {
+    background-color: var(--color-state-positive);
+}
+
+.form-msg--wrong {
+    background-color: var(--color-state-negative);
 }
 
 .label {
