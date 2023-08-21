@@ -1,55 +1,56 @@
--- Active: 1692396226116@@localhost@3306@formula1_store
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     18/08/2023 20:11:36                          */
+/* Created on:     20/08/2023 21:19:21                          */
 /*==============================================================*/
 
+
+drop table if exists USEROPERATIONS;
+
+drop table if exists USERROLES;
 
 drop table if exists USERS;
 
-drop table if exists USER_OPERATIONS;
+/*==============================================================*/
+/* Table: USEROPERATIONS                                        */
+/*==============================================================*/
+create table USEROPERATIONS
+(
+   IDOPERATION          bigint not null auto_increment,
+   IDCARD               char(10) not null,
+   DESCRIPTION          char(150) not null,
+   DATE                 date not null,
+   TIME                 time not null,
+   primary key (IDOPERATION)
+);
 
-drop table if exists USER_ROLES;
+/*==============================================================*/
+/* Table: USERROLES                                             */
+/*==============================================================*/
+create table USERROLES
+(
+   IDROL                smallint not null auto_increment,
+   NAME                 char(30) not null,
+   primary key (IDROL)
+);
 
 /*==============================================================*/
 /* Table: USERS                                                 */
 /*==============================================================*/
 create table USERS
 (
-   ID_USER              bigint not null auto_increment,
-   ID_ROL               smallint not null,
+   IDCARD               char(10) not null,
+   IDROL                smallint not null,
    NAME                 char(30) not null,
+   MOBILENUMBER         char(10) not null,
    EMAIL                char(35) not null,
    PASSWORD             char(16) not null,
-   primary key (ID_USER)
+   ISACTIVE             bool not null default true,
+   primary key (IDCARD)
 );
 
-/*==============================================================*/
-/* Table: USER_OPERATIONS                                       */
-/*==============================================================*/
-create table USER_OPERATIONS
-(
-   ID_OPERATION         bigint not null auto_increment,
-   ID_USER              bigint not null,
-   DESCRIPTION          char(150) not null,
-   DATE                 date not null,
-   TIME                 time not null,
-   primary key (ID_OPERATION)
-);
+alter table USEROPERATIONS add constraint FK_REALIZAR foreign key (IDCARD)
+      references USERS (IDCARD) on delete restrict on update restrict;
 
-/*==============================================================*/
-/* Table: USER_ROLES                                            */
-/*==============================================================*/
-create table USER_ROLES
-(
-   ID_ROL               smallint not null auto_increment,
-   NAME                 char(30) not null,
-   primary key (ID_ROL)
-);
-
-alter table USERS add constraint FK_PERTENECER foreign key (ID_ROL)
-      references USER_ROLES (ID_ROL) on delete restrict on update restrict;
-
-alter table USER_OPERATIONS add constraint FK_REALIZAR foreign key (ID_USER)
-      references USERS (ID_USER) on delete restrict on update restrict;
+alter table USERS add constraint FK_PERTENECER foreign key (IDROL)
+      references USERROLES (IDROL) on delete restrict on update restrict;
 
