@@ -86,4 +86,5 @@ img.logo {
     padding: 5px 10px;
     background-color: var(--bg-color-btn);
     color: var(--color-text);
+    cursor: pointer;
 }
