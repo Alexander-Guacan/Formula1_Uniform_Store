@@ -14,8 +14,8 @@
             <fieldset class="form-body form-login_body">
                 <legend class="form-title"><img src="assets/img/Logotipo sin fondo.png" alt="logotype" class="logo"></legend>
                 <div class="form-group">
-                    <label for="input-username" class="label">Usuario</label>
-                    <input type="text" name="input-username" id="input-username" class="input-text">
+                    <label for="input-id-card" class="label">Cédula</label>
+                    <input type="text" name="input-id-card" id="input-id-card" class="input-text">
                 </div>
                 <div class="form-group">
                     <label for="input-password" class="label">Contraseña</label>
