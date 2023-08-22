@@ -11,7 +11,7 @@
 
 <body class="bg-login">
     <section class="form-wrapper">
-        <form class="form form-login">
+        <form class="form form-login" id="form-login">
             <fieldset class="form-body form-login_body">
                 <legend class="form-title"><img src="assets/img/Logotipo sin fondo.png" alt="logotype" class="logo"></legend>
                 <div class="form-group">
