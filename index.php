@@ -25,7 +25,7 @@
             </fieldset>
             <div class="form-footer">
                 <button type="submit" class="btn">Ingresar</button>
-                <div class="form-msg"></div>
+                <div class="informative-msg">Mensaje de error</div>
             </div>
         </form>
     </section>

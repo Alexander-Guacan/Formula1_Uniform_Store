@@ -70,24 +70,31 @@ img.logo {
     margin-bottom: 25px;
 }
 
-.form-msg {
+.informative-msg {
     --padding-vertical: 15px;
     display: none;
     margin-top: 20px;
     padding-top: var(--padding-vertical);
     padding-bottom: var(--padding-vertical);
+    border-radius: var(--border-radius);
+    text-align: center;
 }
 
-.form-msg--active {
+.informative-msg--active {
     display: block;
 }
 
-.form-msg--success {
+.state-success {
     background-color: var(--color-state-positive);
 }
 
-.form-msg--wrong {
+.state-wrong {
     background-color: var(--color-state-negative);
+}
+
+.state-alert {
+    background-color: var(--color-state-alert);
+    color: var(--bg-color-primary);
 }
 
 .label {
