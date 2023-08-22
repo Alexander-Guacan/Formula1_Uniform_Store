@@ -5,11 +5,5 @@ INSERT INTO userroles (`NAME`) VALUES ('ventas');
 INSERT INTO userroles (`NAME`) VALUES ('bodega');
 
 -- Users
-INSERT INTO users (`IDCARD`, `NAME`, `EMAIL`, `PASSWORD`, `MOBILENUMBER`, `IDROL`)
-VALUES ('1752937712', 'John Doe', 'johndoe@gmail.com', 'rootroot', '0985635691', 1);
-INSERT INTO users (`IDCARD`, `NAME`, `EMAIL`, `PASSWORD`, `MOBILENUMBER`, `IDROL`)
-VALUES ('1711270155', 'Juan Pérez', 'juanperez@hotmail.com', 'adminadmin', '0986237105', 1);
-INSERT INTO users (`IDCARD`, `NAME`, `EMAIL`, `PASSWORD`, `MOBILENUMBER`, `IDROL`)
-VALUES ('1717274788', 'Jane Doe', 'janedoe@yahoo.com', 'password123', '0993968735', 2);
-INSERT INTO users (`IDCARD`, `NAME`, `EMAIL`, `PASSWORD`, `MOBILENUMBER`, `IDROL`)
-VALUES ('1713627071', 'María Gonzáles', 'janedoe@yahoo.com', 'password123', '0993968735', 3);
+INSERT into users (`IDCARD`, `IDROL`, `FIRSTNAME`, `LASTNAME`, `MOBILENUMBER`, `EMAIL`, `USERNAME`, `PASSWORD`)
+VALUES ('1752937712', 1, 'Alexander', 'Guacán', '0985635691', 'adguacan@espe.edu.ec', 'admin', '$2a$12$RugC1Nj.flDbP9Vc0OqCDeUKICmzWp.oux36WiZI/fIp8kzFNkRrW');
