@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     20/08/2023 21:19:21                          */
+/* Created on:     21/08/2023 23:36:16                          */
 /*==============================================================*/
 
 
@@ -17,7 +17,7 @@ create table USEROPERATIONS
 (
    IDOPERATION          bigint not null auto_increment,
    IDCARD               char(10) not null,
-   DESCRIPTION          char(150) not null,
+   DESCRIPTION          char(250) not null,
    DATE                 date not null,
    TIME                 time not null,
    primary key (IDOPERATION)
@@ -29,7 +29,7 @@ create table USEROPERATIONS
 create table USERROLES
 (
    IDROL                smallint not null auto_increment,
-   NAME                 char(30) not null,
+   NAME                 char(30),
    primary key (IDROL)
 );
 
@@ -40,10 +40,12 @@ create table USERS
 (
    IDCARD               char(10) not null,
    IDROL                smallint not null,
-   NAME                 char(30) not null,
+   FIRSTNAME            char(30) not null,
+   LASTNAME             char(30) not null,
    MOBILENUMBER         char(10) not null,
-   EMAIL                char(35) not null,
-   PASSWORD             char(16) not null,
+   EMAIL                char(100) not null,
+   USERNAME             char(20) not null,
+   PASSWORD             char(60) not null,
    ISACTIVE             bool not null default true,
    primary key (IDCARD)
 );
