@@ -35,37 +35,41 @@ hr {
 
 .control-panel {
     display: grid;
-    grid-template-columns: 16% auto;
+    grid-template-columns: 16% 1fr;
 }
 
-.side-bar {
+.menu {
     position: sticky;
-    top: 0px;
+    top: 0;
     min-height: 100vh;
     background-color: var(--bg-color-secondary);
 }
 
-.side-bar_header {
-    padding: 10px 15px 0;
+.menu_header {
+    padding: 20px 10px 0;
 }
 
-.side-bar_logo {
-    margin-bottom: 10px;
+.menu_body,
+.menu_footer {
+    padding: 0 10px;
 }
 
-.side-bar_session {
+.menu_logo {
+    margin-bottom: 25px;
+}
+
+.menu_session {
     text-align: center;
 }
 
-.side-bar_body {
-    padding: 0 10px;
-}
-
-.side-bar_footer {
+.menu_footer {
     position: absolute;
     width: 100%;
     bottom: 10px;
-    padding: 0 10px;
+}
+
+.main {
+    margin: 10px 50px;
 }
 
 .icon-user {
