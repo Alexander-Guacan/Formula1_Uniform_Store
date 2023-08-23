@@ -23,7 +23,7 @@
                 </div>
                 <div class="menu_session">
                     <i class="fa-solid fa-user icon-user"></i>
-                    <a href="#"><h4 id="user-name">John Doe</h4></a>
+                    <h3><a href="#" id="user-name">John Doe</a></h3>
                 </div>
             </section>
             <hr>
