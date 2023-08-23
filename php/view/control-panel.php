@@ -30,7 +30,6 @@
                 <a href="#" class="btn btn-selectable"><i class="fa-solid fa-ghost"></i>&emsp;Button 3</a>
                 <a href="#" class="btn btn-selectable"><i class="fa-solid fa-ghost"></i>&emsp;Button 4</a>
             </section>
-            <!-- <hr> -->
             <section class="side-bar_footer">
                 <a class="btn btn-selectable text-wrong"><i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal"></i>&emsp;Salir</a>
             </section>
