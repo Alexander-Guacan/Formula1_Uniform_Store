@@ -10,78 +10,34 @@
 </head>
 
 <body class="control-panel">
-    <header>
-        <nav class="side-bar">
-            <section class="side-bar_header">
-                <div class="side-bar_logo">
+    <header class="side-bar">
+        <nav class="menu">
+            <section class="menu_header">
+                <div class="menu_logo">
                     <img src="../../assets/img/Logotipo sin fondo.png" alt="logotipo" class="logo">
                 </div>
-                <div class="side-bar_session">
+                <div class="menu_session">
                     <i class="fa-solid fa-user icon-user"></i>
-                    <a href="#">
-                        <h2>John Doe</h2>
-                    </a>
+                    <a href="#"><h2>John Doe</h2></a>
                 </div>
             </section>
             <hr>
-            <section class="side-bar_body">
+            <section class="menu_body">
                 <a href="#" class="btn btn-selectable"><i class="fa-solid fa-ghost"></i>&emsp;Button 1</a>
                 <a href="#" class="btn btn-selectable"><i class="fa-solid fa-ghost"></i>&emsp;Button 2</a>
                 <a href="#" class="btn btn-selectable"><i class="fa-solid fa-ghost"></i>&emsp;Button 3</a>
                 <a href="#" class="btn btn-selectable"><i class="fa-solid fa-ghost"></i>&emsp;Button 4</a>
             </section>
-            <section class="side-bar_footer">
-                <a class="btn btn-selectable text-wrong"><i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal"></i>&emsp;Salir</a>
+            <section class="menu_footer">
+                <a id="btn-logout" class="btn btn-selectable text-wrong">
+                    <i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal"></i>&emsp;Salir
+                </a>
             </section>
         </nav>
     </header>
 
-    <main>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, maiores ea? Quaerat minus voluptatum mollitia aspernatur distinctio aliquam, libero, sint possimus dignissimos at odio id fuga, dolorem iure perferendis beatae?</p>
+    <main class="main">
+                 
     </main>
 </body>
 
