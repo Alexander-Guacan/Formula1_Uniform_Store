@@ -1,3 +1,7 @@
+<?php
+    include_once('./../backend/session.php')
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +11,7 @@
     <title>Panel de control</title>
     <script src="https://kit.fontawesome.com/b19b50badb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../css/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 </head>
 
 <body class="control-panel">
@@ -39,6 +44,8 @@
     <main class="main">
                  
     </main>
+
+    <script type="module" src="../../js/logout.js"></script>
 </body>
 
 </html>
