@@ -32,7 +32,30 @@ formLogin.addEventListener('submit', (event) => {
         type: 'POST',
         data: { login: loginString },
         success: function (response) {
-            console.log(response)
+            response = JSON.parse(response)
+
+            let formMsg = document.querySelector('.informative-msg')
+            
+            if (!response['success']) {
+                formMsg.textContent = response['result']
+                formMsg.classList.add('informative-msg--active')
+                formMsg.classList.add('state-wrong')
+                setTimeout(() => {
+                    formMsg.classList.remove('informative-msg--active')
+                    formMsg.classList.remove('state-wrong')
+                }, 2500);
+            } else {
+                formMsg.textContent = response['result']
+                formMsg.classList.add('informative-msg--active')
+                formMsg.classList.add('state-success')
+                setTimeout(() => {
+                    formMsg.classList.remove('informative-msg--active')
+                    formMsg.classList.remove('state-success')
+                }, 2500);
+            }
         }
     })
+
+    inputUsername.value = ''
+    inputPassword.value = ''
 })
