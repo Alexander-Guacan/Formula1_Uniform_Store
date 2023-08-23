@@ -4,7 +4,7 @@
     if (isset($_POST['login'])) {
         $login = json_decode($_POST['login'], true);
         
-        $query =  "SELECT Users.idCard, Users.username, Users.firstName, Users.lastName, UserRoles.name, Users.password
+        $query =  "SELECT Users.idCard, Users.username, Users.firstName, Users.lastName, UserRoles.name as rolName, Users.password
         FROM Users JOIN UserRoles
         ON Users.idRol = UserRoles.idRol
         WHERE username = '{$login['input-username']}'";
@@ -27,7 +27,7 @@
             'username' => $userFound['username'],
             'firstName' => $userFound['firstName'],
             'lastName' => $userFound['lastName'],
-            'rol' => $userFound['name'],
+            'rol' => $userFound['rolName'],
         );
         
         echo json_encode(array(
