@@ -23,15 +23,11 @@
                 </div>
                 <div class="menu_session">
                     <i class="fa-solid fa-user icon-user"></i>
-                    <a href="#"><h2>John Doe</h2></a>
+                    <a href="#"><h4 id="user-name">John Doe</h4></a>
                 </div>
             </section>
             <hr>
-            <section class="menu_body">
-                <a href="#" class="btn btn-selectable"><i class="fa-solid fa-ghost"></i>&emsp;Button 1</a>
-                <a href="#" class="btn btn-selectable"><i class="fa-solid fa-ghost"></i>&emsp;Button 2</a>
-                <a href="#" class="btn btn-selectable"><i class="fa-solid fa-ghost"></i>&emsp;Button 3</a>
-                <a href="#" class="btn btn-selectable"><i class="fa-solid fa-ghost"></i>&emsp;Button 4</a>
+            <section class="menu_body" id="menu-actions">
             </section>
             <section class="menu_footer">
                 <a id="btn-logout" class="btn btn-selectable text-wrong">
@@ -45,6 +41,7 @@
                  
     </main>
 
+    <script type="module" src="../../js/control-panel.js"></script>
     <script type="module" src="../../js/logout.js"></script>
 </body>
 
