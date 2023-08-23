@@ -19,7 +19,60 @@
 }
 
 body {
+    margin: 0;
     background-color: var(--bg-color-primary);
+    color: var(--color-text);
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+hr {
+    border: 1px solid var(--color-horizontal-line);
+}
+
+.control-panel {
+    display: grid;
+    grid-template-columns: 16% auto;
+}
+
+.side-bar {
+    position: sticky;
+    top: 0px;
+    min-height: 100vh;
+    background-color: var(--bg-color-secondary);
+}
+
+.side-bar_header {
+    padding: 10px 15px 0;
+}
+
+.side-bar_logo {
+    margin-bottom: 10px;
+}
+
+.side-bar_session {
+    text-align: center;
+}
+
+.side-bar_body {
+    padding: 0 10px;
+}
+
+.side-bar_footer {
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+    padding: 0 10px;
+}
+
+.icon-user {
+    font-size: 2em;
+    outline: 2px solid var(--color-text);
+    outline-offset: 8px;
+    border-radius: 50%;
     color: var(--color-text);
 }
 
@@ -84,19 +137,6 @@ img.logo {
     display: block;
 }
 
-.state-success {
-    background-color: var(--color-state-positive);
-}
-
-.state-wrong {
-    background-color: var(--color-state-negative);
-}
-
-.state-alert {
-    background-color: var(--color-state-alert);
-    color: var(--bg-color-primary);
-}
-
 .label {
     display: inline-block;
     margin-bottom: 10px;
@@ -120,4 +160,40 @@ img.logo {
     background-color: var(--bg-color-btn);
     color: var(--color-text);
     cursor: pointer;
+}
+
+.btn-selectable {
+    display: block;
+    width: 100%;
+    padding: 20px 15px;
+    background-color: var(--bg-color-btn-selectable);
+}
+
+.btn-selectable:hover {
+    background-color: var(--bg-color-btn-selectable--active);
+}
+
+.state-success {
+    background-color: var(--color-state-positive);
+}
+
+.state-wrong {
+    background-color: var(--color-state-negative);
+}
+
+.state-alert {
+    background-color: var(--color-state-alert);
+    color: var(--bg-color-primary);
+}
+
+.text-success {
+    color: var(--color-state-positive);
+}
+
+.text-wrong {
+    color: var(--color-state-negative);
+}
+
+.text-alert {
+    color: var(--color-state-alert);
 }
