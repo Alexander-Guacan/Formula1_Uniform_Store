@@ -45,13 +45,7 @@ formLogin.addEventListener('submit', (event) => {
                     formMsg.classList.remove('state-wrong')
                 }, 2500);
             } else {
-                formMsg.textContent = response['result']
-                formMsg.classList.add('informative-msg--active')
-                formMsg.classList.add('state-success')
-                setTimeout(() => {
-                    formMsg.classList.remove('informative-msg--active')
-                    formMsg.classList.remove('state-success')
-                }, 2500);
+                window.location.href = './php/view/control-panel.php'
             }
         }
     })
