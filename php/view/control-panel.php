@@ -28,6 +28,7 @@
             </section>
             <hr>
             <section class="menu_body" id="menu-actions">
+                <a href="#" class="btn btn-selectable"><i class="fa-solid fa-ghost"></i>&emsp;Generic button</a>'
             </section>
             <section class="menu_footer">
                 <a id="btn-logout" class="btn btn-selectable text-wrong">
@@ -38,7 +39,7 @@
     </header>
 
     <main class="main">
-                 
+        
     </main>
 
     <script type="module" src="../../js/control-panel.js"></script>
