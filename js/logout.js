@@ -9,4 +9,6 @@ btnLogout.addEventListener('click', (event) => {
             window.location.href = '../../index.php'
         }
     })
+
+    localStorage.removeItem('lastPage')
 })
