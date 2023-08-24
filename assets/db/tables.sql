@@ -1,58 +1,58 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     21/08/2023 23:36:16                          */
+/* Created on:     24/08/2023 17:54:26                          */
 /*==============================================================*/
 
 
-drop table if exists USEROPERATIONS;
+drop table if exists UserOperations;
 
-drop table if exists USERROLES;
+drop table if exists UserRoles;
 
-drop table if exists USERS;
+drop table if exists Users;
 
 /*==============================================================*/
-/* Table: USEROPERATIONS                                        */
+/* Table: UserOperations                                        */
 /*==============================================================*/
-create table USEROPERATIONS
+create table UserOperations
 (
-   IDOPERATION          bigint not null auto_increment,
-   IDCARD               char(10) not null,
-   DESCRIPTION          char(250) not null,
-   DATE                 date not null,
-   TIME                 time not null,
-   primary key (IDOPERATION)
+   idOperation          bigint not null auto_increment,
+   idCard               char(10) not null,
+   description          char(250) not null,
+   date                 date not null,
+   time                 time not null,
+   primary key (idOperation)
 );
 
 /*==============================================================*/
-/* Table: USERROLES                                             */
+/* Table: UserRoles                                             */
 /*==============================================================*/
-create table USERROLES
+create table UserRoles
 (
-   IDROL                smallint not null auto_increment,
-   NAME                 char(30),
-   primary key (IDROL)
+   idRol                smallint not null auto_increment,
+   name                 char(30),
+   primary key (idRol)
 );
 
 /*==============================================================*/
-/* Table: USERS                                                 */
+/* Table: Users                                                 */
 /*==============================================================*/
-create table USERS
+create table Users
 (
-   IDCARD               char(10) not null,
-   IDROL                smallint not null,
-   FIRSTNAME            char(30) not null,
-   LASTNAME             char(30) not null,
-   MOBILENUMBER         char(10) not null,
-   EMAIL                char(100) not null,
-   USERNAME             char(20) not null,
-   PASSWORD             char(60) not null,
-   ISACTIVE             bool not null default true,
-   primary key (IDCARD)
+   idCard               char(10) not null,
+   idRol                smallint not null,
+   firstName            char(30) not null,
+   lastName             char(30) not null,
+   username             char(20) not null,
+   password             char(60) not null,
+   mobileNumber         char(10) not null,
+   email                char(100) not null,
+   isActive             bool not null default true,
+   primary key (idCard)
 );
 
-alter table USEROPERATIONS add constraint FK_REALIZAR foreign key (IDCARD)
-      references USERS (IDCARD) on delete restrict on update restrict;
+alter table UserOperations add constraint FK_realizar foreign key (idCard)
+      references Users (idCard) on delete restrict on update restrict;
 
-alter table USERS add constraint FK_PERTENECER foreign key (IDROL)
-      references USERROLES (IDROL) on delete restrict on update restrict;
+alter table Users add constraint FK_pertenecer foreign key (idRol)
+      references UserRoles (idRol) on delete restrict on update restrict;
 
