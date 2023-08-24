@@ -1,12 +1,9 @@
 let body = document.querySelector('.main')
 
-if (localStorage.getItem('lastPage'))
-    loadPage(localStorage.getItem('lastPage'))
-
 const menuBtns = {
     admin: {
         users: createMenuBtn('Usuarios', ['fa-solid', 'fa-users'], function (event) {
-            loadPage('users.php')
+            window.location.href = 'users.php'
         }),
         registers: createMenuBtn('Actividades', ['fa-solid', 'fa-rectangle-list'], function (event) {
             console.log('register btn pressed')
@@ -37,21 +34,6 @@ $.ajax({
             menu.appendChild(menuBtns[user.rol][btn])
     }
 })
-
-/**
- * 
- * @param {String} phpDirFile 
- */
-function loadPage(phpDirFile) {
-    $.ajax ({
-        url: phpDirFile,
-        type: 'GET',
-        success: function (response) {
-            body.innerHTML = response
-            localStorage.setItem('lastPage', phpDirFile)
-        }
-    })
-}
 
 /**
  * 
