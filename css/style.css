@@ -69,11 +69,13 @@ tbody, tfoot tr {
     color: var(--color-text-table-row);
 }
 
-tbody, tfoot tr:last-child td:first-child {
+tfoot tr:last-child td:first-child,
+tbody tr:last-child td:first-child {
     border-bottom-left-radius: var(--border-radius);
 }
 
-tbody, tfoot tr:last-child td:last-child {
+tfoot tr:last-child td:last-child,
+tbody tr:last-child td:last-child {
     border-bottom-right-radius: var(--border-radius);
 }
 
