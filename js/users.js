@@ -7,6 +7,12 @@ let formAddUser = {
     btnSubmit: document.querySelector('#form-add-user .form-footer button')
 }
 
+let formViewUser = {
+    form: document.querySelector('#form-view-user'),
+    btnClose: document.querySelector('#form-view-user .popup_btn-close'),
+    btnSubmit: document.querySelector('#form-view-user .form-footer button')
+}
+
 let users = ''
 
 $.ajax({
@@ -14,7 +20,7 @@ $.ajax({
     type: 'GET',
     data: { usersRegister: '' },
     success: function (response) {
-    users = JSON.parse(response)
+        users = JSON.parse(response)
         showUsers()
     }
 })
@@ -27,12 +33,27 @@ formAddUser.btnClose.addEventListener('click', (event) => {
     closePopup(formAddUser.form)
 })
 
+formViewUser.btnClose.addEventListener('click', (event) => {
+    closePopup(formViewUser.form)
+})
+
 function openPopup(form) {
     form.classList.add('popup--open')
 }
 
 function closePopup(form) {
     form.classList.remove('popup--open')
+}
+
+/**
+ * 
+ * @param {HTMLAnchorElement} form 
+ * @param {*} user 
+ */
+function chargeDataOnViewForm(form, user) {
+    form.querySelector('#input-view-name').setAttribute('placeholder', `${user.firstName} ${user.lastName}`)
+    form.querySelector('#input-view-username').setAttribute('placeholder', `${user.username}`)
+    form.querySelector('#input-view-id-card').setAttribute('placeholder', `${user.idCard}`)
 }
 
 function createUserDataRow(user) {
@@ -47,7 +68,7 @@ function createUserDataRow(user) {
     <td>${user.rol}</td>
     <td><span class="user-state ${user.isActive ? 'state-success' : 'state-wrong'}">${user.isActive ? 'Activo' : 'Inactivo'}</span></td>
     <td>
-        <a href="#" class="icon" title="Ver información"><i class="fa-solid fa-eye text-success"></i></a>
+        <a href="#" class="icon" title="Ver información" id="users-icon-view-${user.idCard}"><i class="fa-solid fa-eye text-success"></i></a>
         <a href="#" class="icon" title="Editar usuario"><i class="fa-solid fa-user-pen text-neutral"></i></a>
         ${user.isActive ?
             '<a href="#" class="icon" title="Desactivar cuenta"><i class="fa-solid fa-toggle-on text-success"></i></a>' :
@@ -62,7 +83,7 @@ function createUserDataRow(user) {
 
 function showUsers() {
     if (!users.length)
-        usersFooterTable.innerHTML = `
+        return usersFooterTable.innerHTML = `
         <tr>
             <td colspan="7">No existen usuarios</td>
         </tr>
@@ -70,5 +91,15 @@ function showUsers() {
 
     users.forEach(user => {
         usersBodyTable.appendChild(createUserDataRow(user))
+        addEventListenerToTableAction(user)
     });
+
+}
+
+function addEventListenerToTableAction(user) {
+    let row = usersBodyTable.querySelector(`#row-${user.idCard}`)
+    row.querySelector(`#users-icon-view-${user.idCard}`).addEventListener('click', (event) => {
+        openPopup(formViewUser.form)
+        chargeDataOnViewForm(formViewUser.form, user)
+    })
 }
