@@ -3,7 +3,7 @@
 
     if (isset($_GET['usersRegister'])) {
         session_start();
-        $query = "SELECT *, UserRoles.name as ROLNAME
+        $query = "SELECT *
         FROM Users
         JOIN UserRoles ON Users.idRol = UserRoles.idRol
         WHERE Users.idCard != '{$_SESSION['user']['idCard']}'";
@@ -13,14 +13,14 @@
 
         while ($row = $result->fetch_array()) {
             $json[] = array(
-                'idCard' => $row['IDCARD'],
-                'rol' => $row['ROLNAME'],
-                'firstName' => $row['FIRSTNAME'],
-                'lastName' => $row['LASTNAME'],
-                'mobileNumber' => $row['MOBILENUMBER'],
-                'email' => $row['EMAIL'],
-                'username' => $row['USERNAME'],
-                'isActive' => $row['ISACTIVE'] == '1',
+                'idCard' => $row['idCard'],
+                'rol' => $row['name'],
+                'firstName' => $row['firstName'],
+                'lastName' => $row['lastName'],
+                'mobileNumber' => $row['mobileNumber'],
+                'email' => $row['email'],
+                'username' => $row['username'],
+                'isActive' => $row['isActive'] == '1',
             );
         }
 
