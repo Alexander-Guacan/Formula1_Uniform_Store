@@ -176,9 +176,6 @@ include('./control-panel-header.php');
         <div class="form-group">
             <label for="input-password" class="label">Rol</label>
             <select name="select-view-user-rol" id="select-view-user-rol" class="select" disabled>
-                <option value="admin" class="option">admin</option>
-                <option value="ventas" class="option" selected>ventas</option>
-                <option value="bodega" class="option">bodega</option>
             </select>
         </div>
     </fieldset>
