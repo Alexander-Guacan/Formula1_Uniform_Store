@@ -48,12 +48,48 @@ function closePopup(form) {
 /**
  * 
  * @param {HTMLAnchorElement} form 
- * @param {*} user 
+ * @param {JSON} user 
  */
 function chargeDataOnViewForm(form, user) {
     form.querySelector('#input-view-name').setAttribute('placeholder', `${user.firstName} ${user.lastName}`)
     form.querySelector('#input-view-username').setAttribute('placeholder', `${user.username}`)
     form.querySelector('#input-view-id-card').setAttribute('placeholder', `${user.idCard}`)
+    form.querySelector('#input-view-email').setAttribute('placeholder', `${user.email}`)
+    form.querySelector('#input-view-mobile-number').setAttribute('placeholder', `${user.mobileNumber}`)
+    form.querySelector('#select-view-user-rol').innerHTML = `<option>${user.rol}</option>`
+}
+
+function alternateUserState(user) {
+    $.ajax({
+        url: '../backend/users.php',
+        type: 'POST',
+        data: { userId: user.idCard, isActive: user.isActive },
+        success: function (response) {
+            let stateMsg = document.querySelector(`#row-${user.idCard} .user-state`)
+            let btnState = document.querySelector(`#users-icon-state-${user.idCard} i`)
+
+            if (user.isActive) {
+                stateMsg.classList.remove('state-success')
+                stateMsg.classList.add('state-wrong')
+                stateMsg.textContent = 'Inactivo'
+                btnState.classList.remove('fa-toggle-on')
+                btnState.classList.remove('text-success')
+                btnState.classList.add('fa-toggle-off')
+                btnState.classList.add('text-wrong')
+            } else {
+                stateMsg.classList.remove('state-wrong')
+                stateMsg.classList.add('state-success')
+                stateMsg.textContent = 'Activo'
+                btnState.classList.remove('fa-toggle-off')
+                btnState.classList.remove('text-wrong')
+                btnState.classList.add('fa-toggle-on')
+                btnState.classList.add('text-success')
+
+            }
+
+            user.isActive = !user.isActive
+        }
+    })
 }
 
 function createUserDataRow(user) {
@@ -69,12 +105,9 @@ function createUserDataRow(user) {
     <td><span class="user-state ${user.isActive ? 'state-success' : 'state-wrong'}">${user.isActive ? 'Activo' : 'Inactivo'}</span></td>
     <td>
         <a href="#" class="icon" title="Ver información" id="users-icon-view-${user.idCard}"><i class="fa-solid fa-eye text-success"></i></a>
-        <a href="#" class="icon" title="Editar usuario"><i class="fa-solid fa-user-pen text-neutral"></i></a>
-        ${user.isActive ?
-            '<a href="#" class="icon" title="Desactivar cuenta"><i class="fa-solid fa-toggle-on text-success"></i></a>' :
-            '<a href="#" class="icon" title="Activar cuenta"><i class="fa-solid fa-toggle-off text-wrong"></i></a>'
-        }
-        <a href="#" class="icon" title="Eliminar usuario"><i class="fa-solid fa-user-xmark text-wrong"></i></a>
+        <a href="#" class="icon" title="Editar usuario" id="users-icon-edit-${user.idCard}"><i class="fa-solid fa-user-pen text-neutral"></i></a>
+        <a href="#" class="icon" title="${user.isActive ? 'Desactivar cuenta' : 'Activar cuenta'}" id="users-icon-state-${user.idCard}"><i class="fa-solid ${user.isActive ? 'fa-toggle-on text-success' : 'fa-toggle-off text-wrong' } "></i></a>
+        <a href="#" class="icon" title="Eliminar usuario" id="users-icon-delete-${user.idCard}"><i class="fa-solid fa-user-xmark text-wrong"></i></a>
     </td>
     `
     row.innerHTML = dataRow
@@ -102,4 +135,9 @@ function addEventListenerToTableAction(user) {
         openPopup(formViewUser.form)
         chargeDataOnViewForm(formViewUser.form, user)
     })
+
+    row.querySelector(`#users-icon-state-${user.idCard}`).addEventListener('click', (event) => {
+        alternateUserState(user)
+    })
+
 }
