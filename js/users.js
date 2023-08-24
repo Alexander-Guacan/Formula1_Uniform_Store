@@ -13,6 +13,12 @@ let formViewUser = {
     btnSubmit: document.querySelector('#form-view-user .form-footer button')
 }
 
+let formEditUser = {
+    form: document.querySelector('#form-edit-user'),
+    btnClose: document.querySelector('#form-edit-user .popup_btn-close'),
+    btnSubmit: document.querySelector('#form-edit-user .form-footer button')
+}
+
 let users = ''
 
 $.ajax({
@@ -37,6 +43,10 @@ formViewUser.btnClose.addEventListener('click', (event) => {
     closePopup(formViewUser.form)
 })
 
+formEditUser.btnClose.addEventListener('click', (event) => {
+    closePopup(formEditUser.form)
+})
+
 function openPopup(form) {
     form.classList.add('popup--open')
 }
@@ -57,6 +67,19 @@ function chargeDataOnViewForm(form, user) {
     form.querySelector('#input-view-email').setAttribute('placeholder', `${user.email}`)
     form.querySelector('#input-view-mobile-number').setAttribute('placeholder', `${user.mobileNumber}`)
     form.querySelector('#select-view-user-rol').innerHTML = `<option>${user.rol}</option>`
+}
+
+function getRolesOption(rolSelect) {
+
+}
+
+function chargeDataOnEditForm(form, user) {
+    form.querySelector('#input-edit-name').setAttribute('value', `${user.firstName} ${user.lastName}`)
+    form.querySelector('#input-edit-username').setAttribute('value', `${user.username}`)
+    form.querySelector('#input-edit-id-card').setAttribute('value', `${user.idCard}`)
+    form.querySelector('#input-edit-email').setAttribute('value', `${user.email}`)
+    form.querySelector('#input-edit-mobile-number').setAttribute('value', `${user.mobileNumber}`)
+    form.querySelector('#select-edit-user-rol').innerHTML = `<option value="${user.rol}">${user.rol}</option>`
 }
 
 function alternateUserState(user) {
@@ -140,4 +163,8 @@ function addEventListenerToTableAction(user) {
         alternateUserState(user)
     })
 
+    row.querySelector(`#users-icon-edit-${user.idCard}`).addEventListener('click', (event) => {
+        openPopup(formEditUser.form)
+        chargeDataOnEditForm(formEditUser.form, user)
+    })
 }
