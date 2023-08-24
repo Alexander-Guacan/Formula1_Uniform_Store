@@ -28,7 +28,7 @@
     }
 
     if (isset($_POST['isActive'])) {
-        $reverseState = $_POST['isActive'] == 'true' ? 0 : 1;
+        $reverseState = $_POST['isActive'] == 'true';
         $query = "UPDATE users
         SET isActive = $reverseState
         WHERE idCard = '{$_POST['userId']}'";
