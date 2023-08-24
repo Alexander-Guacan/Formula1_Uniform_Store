@@ -27,9 +27,7 @@
                 </div>
             </section>
             <hr>
-            <section class="menu_body" id="menu-actions">
-                <a href="#" class="btn btn-selectable"><i class="fa-solid fa-ghost"></i>&emsp;Generic button</a>'
-            </section>
+            <section class="menu_body" id="menu-actions"></section>
             <section class="menu_footer">
                 <a id="btn-logout" class="btn btn-selectable text-wrong">
                     <i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal"></i>&emsp;Salir
