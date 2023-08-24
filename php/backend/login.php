@@ -7,11 +7,11 @@
         $query =  "SELECT Users.idCard, Users.username, Users.firstName, Users.lastName, UserRoles.name as rolName, Users.password
         FROM Users JOIN UserRoles
         ON Users.idRol = UserRoles.idRol
-        WHERE username = '{$login['input-username']}'";
+        WHERE Users.username = '{$login['input-username']}'";
         
         $result = mysqli_query($connection, $query);
         
-        $response_wrong = array(
+        $responseWrong = array(
             'success' => false,
             'result' => 'Usuario o contraseña incorrectos'
         );
@@ -19,7 +19,7 @@
         $userFound = $result->fetch_array();
 
         if (!$result->num_rows || !password_verify($login['input-password'], $userFound['password']))
-            die(json_encode($response_wrong));
+            die(json_encode($responseWrong));
 
         session_start();
         $_SESSION['user'] = array(
