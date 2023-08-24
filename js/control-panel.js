@@ -1,23 +1,22 @@
-let user
-let userName = document.querySelector('#user-name')
-let menu = document.querySelector('#menu-actions')
-let usersActions = {
-    'admin': {
-        users: '<a href="#" class="btn btn-selectable"><i class="fa-solid fa-users"></i>&emsp;Usuarios</a>',
-        operations: '<a href="#" class="btn btn-selectable"><i class="fa-solid fa-user-clock"></i>&emsp;Operaciones</a>'
-    },
-    'ventas': {
-        orderProduction: '<a href="#" class="btn btn-selectable"><i class="fa-solid fa-users"></i>&emsp;Orden de producción</a>',
-        datasheets: '<a href="#" class="btn btn-selectable"><i class="fa-solid fa-user-clock"></i>&emsp;Hojas técnicas</a>'
-    }
-}
+let body = document.querySelector('main')
 
-function showUserActions(userRol) {
-    let btns = ''
-    for (let btn in usersActions[userRol]) {
-        btns += `${usersActions[userRol][btn]}\n`
+const menuBtns = {
+    admin: {
+        users: createMenuBtn('Usuarios', ['fa-solid', 'fa-users'], function (event) {
+            console.log('users btn pressed')
+        }),
+        registers: createMenuBtn('Actividades', ['fa-solid', 'fa-rectangle-list'], function (event) {
+            console.log('register btn pressed')
+        })
+    },
+    ventas: {
+        products: createMenuBtn('Productos', ['fa-solid', 'fa-users'], function (event) {
+            console.log('products btn pressed')
+        }),
+        datasheets: createMenuBtn('Hojas técnicas', ['fa-solid', 'fa-users'], function (event) {
+            console.log('datasheets btn pressed')
+        })
     }
-    menu.innerHTML = btns
 }
 
 $.ajax({
@@ -25,8 +24,48 @@ $.ajax({
     type: 'POST',
     data: { userSession: '' },
     success: function (response) {
-        user = JSON.parse(response)
-        userName.textContent = `${user['firstName']} ${user['lastName']}`
-        showUserActions(user['rol'])
+        let userName = document.querySelector('#user-name')
+        let menu = document.querySelector('#menu-actions')
+        let user = JSON.parse(response)
+
+        userName.textContent = `${user.firstName} ${user.lastName}`
+
+        for (let btn in menuBtns[user.rol])
+            menu.appendChild(menuBtns[user.rol][btn])
     }
 })
+
+/**
+ * 
+ * @param {HTMLElement} element 
+ * @param {Array<String>} classes 
+ */
+function addClassesToElement(element, classes) {
+    classes.forEach(CssClass => {
+        element.classList.add(CssClass)
+    });
+}
+
+/**
+ * 
+ * @param {String} text 
+ * @param {Array<String>} iconClasses 
+ * @param {Function} eventOnClick 
+ * @returns 
+ */
+function createMenuBtn(text, iconClasses, eventOnClick) {
+    const btnMenuClasses = ['btn', 'btn-selectable']
+
+    let btn = document.createElement('a')
+    addClassesToElement(btn, btnMenuClasses)
+
+    let icon = document.createElement('i')
+    addClassesToElement(icon, iconClasses)
+
+    btn.appendChild(icon)
+    btn.innerHTML += `&emsp;${text}`
+
+    btn.addEventListener('click', eventOnClick)
+
+    return btn
+}
