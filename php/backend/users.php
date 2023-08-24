@@ -20,7 +20,7 @@
                 'mobileNumber' => $row['MOBILENUMBER'],
                 'email' => $row['EMAIL'],
                 'username' => $row['USERNAME'],
-                'isActive' => $row['ISACTIVE'],
+                'isActive' => $row['ISACTIVE'] == '1',
             );
         }
 
