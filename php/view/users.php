@@ -1,3 +1,7 @@
+<?php
+include('./control-panel-header.php');
+?>
+
 <h1>Gestión de usuarios</h1>
 <section>
     <article class="table-actions">
@@ -21,7 +25,7 @@
             </tr>
         </thead>
         <tbody id="users-table-body">
-            <tr>
+            <!-- <tr>
                 <td>1752937712</td>
                 <td>Carlos Trejo</td>
                 <td>0985635691</td>
@@ -35,12 +39,12 @@
                     <a href="#" class="icon" title="Activar cuenta"><i class="fa-solid fa-toggle-off text-wrong"></i></a>
                     <a href="#" class="icon" title="Eliminar usuario"><i class="fa-solid fa-user-xmark text-wrong"></i></a>
                 </td>
-            </tr>
+            </tr> -->
         </tbody>
         <tfoot id="users-table-footer">
-            <tr>
+            <!-- <tr>
                 <td colspan="7">No existen usuarios</td>
-            </tr>
+            </tr> -->
         </tfoot>
     </table>
 </section>
@@ -181,3 +185,7 @@
 </form>
 
 <script src="../../js/users.js"></script>
+
+<?php
+include('./control-panel-footer.php');
+?>
