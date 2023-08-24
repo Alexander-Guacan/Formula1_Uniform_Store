@@ -1,7 +1,7 @@
 <?php
     include_once('./connection.php');
 
-    if (isset($_GET['usersRegister'])) {
+    if (isset($_GET['readAll'])) {
         session_start();
         $query = "SELECT *
         FROM Users
@@ -27,7 +27,7 @@
         echo json_encode($json);
     }
 
-    if (isset($_POST['isActive'])) {
+    if (isset($_POST['updateState'])) {
         $reverseState = $_POST['isActive'] == 'true' ? 0 : 1;
         $query = "UPDATE users
         SET isActive = $reverseState

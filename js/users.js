@@ -24,7 +24,7 @@ let users = ''
 $.ajax({
     url: '../backend/users.php',
     type: 'GET',
-    data: { usersRegister: '' },
+    data: { readAll: '' },
     success: function (response) {
         users = JSON.parse(response)
         showUsers()
@@ -86,7 +86,7 @@ function alternateUserState(user) {
     $.ajax({
         url: '../backend/users.php',
         type: 'POST',
-        data: { userId: user.idCard, isActive: user.isActive },
+        data: { updateState: '', userId: user.idCard, isActive: user.isActive },
         success: function (response) {
             let stateMsg = document.querySelector(`#row-${user.idCard} .user-state`)
             let btnState = document.querySelector(`#users-icon-state-${user.idCard} i`)
@@ -149,7 +149,6 @@ function showUsers() {
         usersBodyTable.appendChild(createUserDataRow(user))
         addEventListenerToTableAction(user)
     });
-
 }
 
 function addEventListenerToTableAction(user) {
