@@ -9,8 +9,7 @@ let formAddUser = {
 
 let formViewUser = {
     form: document.querySelector('#form-view-user'),
-    btnClose: document.querySelector('#form-view-user .popup_btn-close'),
-    btnSubmit: document.querySelector('#form-view-user .form-footer button')
+    btnClose: document.querySelector('#form-view-user .popup_btn-close')
 }
 
 let formEditUser = {
@@ -58,12 +57,38 @@ formEditUser.btnClose.addEventListener('click', (event) => {
     closePopup(formEditUser.form)
 })
 
+formEditUser.form.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    const inputs = Object.fromEntries(new FormData(event.target))
+
+    // if (!inputPassword.value.length && inputPasswordRepeated.value.length || inputPassword.value.length && !inputPasswordRepeated.value.length)
+    //     showErrorMsgOnForm(formEditUser.form, 'Si desea cambiar contraseña debe ingresar la nueva contraseña y repetirla')
+
+    console.log(inputs)
+
+    
+})
+
 function openPopup(form) {
     form.classList.add('popup--open')
 }
 
 function closePopup(form) {
     form.classList.remove('popup--open')
+}
+
+function showErrorMsgOnForm(form, msg) {
+    let errorMessage = form.querySelector('.informative-msg')
+    errorMessage.classList.add('state-wrong')
+    errorMessage.classList.add('informative-msg--active')
+    errorMessage.textContent = msg
+
+    setTimeout(() => {
+        errorMessage.classList.remove('state-wrong')
+        errorMessage.classList.remove('informative-msg--active')
+        errorMessage.textContent = ''
+    }, 10000);
 }
 
 /**
@@ -101,7 +126,7 @@ function chargeDataOnEditForm(form, user) {
     form.querySelector('#input-edit-id-card').setAttribute('value', `${user.idCard}`)
     form.querySelector('#input-edit-email').setAttribute('value', `${user.email}`)
     form.querySelector('#input-edit-mobile-number').setAttribute('value', `${user.mobileNumber}`)
-    
+
     chargeSelectRol(form.querySelector('#select-edit-user-rol'), user.rol)
 }
 
@@ -141,7 +166,7 @@ function alternateUserState(user) {
 function createUserDataRow(user) {
     let row = document.createElement('tr')
     row.id = `row-${user.idCard}`
-    
+
     dataRow = `
     <td>${user.idCard}</td>
     <td>${user.firstName} ${user.lastName}</td>
@@ -152,7 +177,7 @@ function createUserDataRow(user) {
     <td>
         <a href="#" class="icon" title="Ver información" id="users-icon-view-${user.idCard}"><i class="fa-solid fa-eye text-success"></i></a>
         <a href="#" class="icon" title="Editar usuario" id="users-icon-edit-${user.idCard}"><i class="fa-solid fa-user-pen text-neutral"></i></a>
-        <a href="#" class="icon" title="${user.isActive ? 'Desactivar cuenta' : 'Activar cuenta'}" id="users-icon-state-${user.idCard}"><i class="fa-solid ${user.isActive ? 'fa-toggle-on text-success' : 'fa-toggle-off text-wrong' } "></i></a>
+        <a href="#" class="icon" title="${user.isActive ? 'Desactivar cuenta' : 'Activar cuenta'}" id="users-icon-state-${user.idCard}"><i class="fa-solid ${user.isActive ? 'fa-toggle-on text-success' : 'fa-toggle-off text-wrong'} "></i></a>
         <a href="#" class="icon" title="Eliminar usuario" id="users-icon-delete-${user.idCard}"><i class="fa-solid fa-user-xmark text-wrong"></i></a>
     </td>
     `
