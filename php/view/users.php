@@ -105,8 +105,12 @@ include('./control-panel-header.php');
             <h2>Editar usuario</h2>
         </legend>
         <div class="form-group">
-            <label for="input-edit-name" class="label">Nombre y Apellido</label>
-            <input type="text" name="input-edit-name" id="input-edit-name" class="input-text">
+            <label for="input-edit-first-name" class="label">Nombre</label>
+            <input type="text" name="input-edit-first-name" id="input-edit-first-name" class="input-text">
+        </div>
+        <div class="form-group">
+            <label for="input-edit-last-name" class="label">Apellido</label>
+            <input type="text" name="input-edit-last-name" id="input-edit-last-name" class="input-text">
         </div>
         <div class="form-group">
             <label for="input-edit-username" class="label">Usuario</label>
@@ -114,7 +118,7 @@ include('./control-panel-header.php');
         </div>
         <div class="form-group">
             <label for="input-edit-id-card" class="label">Cédula</label>
-            <input type="text" name="input-edit-id-card" id="input-edit-id-card" class="input-text"" disabled>
+            <input type="text" name="input-edit-id-card" id="input-edit-id-card" class="input-text" disabled>
         </div>
         <div class=" form-group">
             <label for="input-edit-email" class="label">Correo electrónico</label>
@@ -131,6 +135,10 @@ include('./control-panel-header.php');
                 <option value="ventas" class="option">ventas</option>
                 <option value="bodega" class="option">bodega</option> -->
             </select>
+        </div>
+        <div class="form-group">
+            <label for="input-edit-state" class="label">Estado</label>
+            <input type="text" name="input-edit-state" id="input-edit-state" class="input-text" disabled>
         </div>
         <div class="form-group">
             <label for="input-edit-password" class="label">Nueva contraseña</label>
