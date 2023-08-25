@@ -35,4 +35,21 @@
         $result = $connection->query($query);
     }
 
-?>
+    if (isset($_POST['update'])) {
+        $user = json_decode($_POST['user'], true);
+        $queryRol = "SELECT idRol
+        FROM UserRoles
+        WHERE name = '{$user['rol']}'";
+        $idRol = $connection->query($queryRol)->fetch_array()['idRol'];
+
+        $queryUser = "UPDATE users SET
+        idRol = '$idRol', firstName = '{$user['firstName']}', lastName = '{$user['lastName']}',
+        username = '{$user['username']}', mobileNumber = '{$user['mobileNumber']}', email = '{$user['email']}'";
+
+        if (strlen($user['password']) > 0)
+            $queryUser = $queryUser.", password = '{$user['password']}'";
+
+        $queryUser = $queryUser." WHERE idCard = '{$user['idCard']}'";
+
+        $connection->query($queryUser);
+    }

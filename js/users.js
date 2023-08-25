@@ -62,12 +62,30 @@ formEditUser.form.addEventListener('submit', (event) => {
 
     const inputs = Object.fromEntries(new FormData(event.target))
 
-    // if (!inputPassword.value.length && inputPasswordRepeated.value.length || inputPassword.value.length && !inputPasswordRepeated.value.length)
-    //     showErrorMsgOnForm(formEditUser.form, 'Si desea cambiar contraseña debe ingresar la nueva contraseña y repetirla')
+    if (inputs['input-edit-password'] != inputs['input-edit-repeated-password'])
+        return showErrorMsgOnForm(formEditUser.form, 'Si desea cambiar contraseña debe ingresar la nueva contraseña y repetirla')
 
-    console.log(inputs)
+    let user = {
+        firstName: inputs['input-edit-first-name'],
+        lastName: inputs['input-edit-last-name'],
+        username: inputs['input-edit-username'],
+        idCard: formEditUser.form.querySelector('#input-edit-id-card').value,
+        email: inputs['input-edit-email'],
+        mobileNumber: inputs['input-edit-mobile-number'],
+        rol: inputs['select-edit-user-rol'],
+        password: inputs['input-edit-password'],
+        isActive: formEditUser.form.querySelector('#input-edit-state').value == 'Activo'
+    }
 
-    
+    $.ajax({
+        url: '../backend/users.php',
+        type: 'POST',
+        data: { update: '', user: JSON.stringify(user) },
+        success: function (response) {
+            updateRow(user)
+            closePopup(formEditUser.form)
+        }
+    })
 })
 
 function openPopup(form) {
@@ -88,7 +106,12 @@ function showErrorMsgOnForm(form, msg) {
         errorMessage.classList.remove('state-wrong')
         errorMessage.classList.remove('informative-msg--active')
         errorMessage.textContent = ''
-    }, 10000);
+    }, 5000);
+}
+
+function updateRow(user) {
+    document.querySelector(`#row-${user.idCard}`).innerHTML = createUserDataRow(user)
+    addEventListenerToTableAction(user)
 }
 
 /**
@@ -120,12 +143,14 @@ function chargeSelectRol(selectObject, rolSelectDefault) {
     });
 }
 
-function chargeDataOnEditForm(form, user) {
-    form.querySelector('#input-edit-name').setAttribute('value', `${user.firstName} ${user.lastName}`)
+function chargeDataOnForm(form, user) {
+    form.querySelector('#input-edit-first-name').setAttribute('value', `${user.firstName}`)
+    form.querySelector('#input-edit-last-name').setAttribute('value', `${user.lastName}`)
     form.querySelector('#input-edit-username').setAttribute('value', `${user.username}`)
     form.querySelector('#input-edit-id-card').setAttribute('value', `${user.idCard}`)
     form.querySelector('#input-edit-email').setAttribute('value', `${user.email}`)
     form.querySelector('#input-edit-mobile-number').setAttribute('value', `${user.mobileNumber}`)
+    form.querySelector('#input-edit-state').setAttribute('value', `${user.isActive ? 'Activo' : 'Inactivo'}`)
 
     chargeSelectRol(form.querySelector('#select-edit-user-rol'), user.rol)
 }
@@ -136,38 +161,14 @@ function alternateUserState(user) {
         type: 'POST',
         data: { updateState: '', userId: user.idCard, isActive: user.isActive },
         success: function (response) {
-            let stateMsg = document.querySelector(`#row-${user.idCard} .user-state`)
-            let btnState = document.querySelector(`#users-icon-state-${user.idCard} i`)
-
-            if (user.isActive) {
-                stateMsg.classList.remove('state-success')
-                stateMsg.classList.add('state-wrong')
-                stateMsg.textContent = 'Inactivo'
-                btnState.classList.remove('fa-toggle-on')
-                btnState.classList.remove('text-success')
-                btnState.classList.add('fa-toggle-off')
-                btnState.classList.add('text-wrong')
-            } else {
-                stateMsg.classList.remove('state-wrong')
-                stateMsg.classList.add('state-success')
-                stateMsg.textContent = 'Activo'
-                btnState.classList.remove('fa-toggle-off')
-                btnState.classList.remove('text-wrong')
-                btnState.classList.add('fa-toggle-on')
-                btnState.classList.add('text-success')
-
-            }
-
             user.isActive = !user.isActive
+            updateRow(user)
         }
     })
 }
 
 function createUserDataRow(user) {
-    let row = document.createElement('tr')
-    row.id = `row-${user.idCard}`
-
-    dataRow = `
+    let dataRow = `
     <td>${user.idCard}</td>
     <td>${user.firstName} ${user.lastName}</td>
     <td>${user.mobileNumber}</td>
@@ -181,8 +182,7 @@ function createUserDataRow(user) {
         <a href="#" class="icon" title="Eliminar usuario" id="users-icon-delete-${user.idCard}"><i class="fa-solid fa-user-xmark text-wrong"></i></a>
     </td>
     `
-    row.innerHTML = dataRow
-    return row
+    return dataRow
 }
 
 function showUsers() {
@@ -194,7 +194,10 @@ function showUsers() {
        `
 
     users.forEach(user => {
-        usersBodyTable.appendChild(createUserDataRow(user))
+        let row = document.createElement('tr')
+        row.id = `row-${user.idCard}`
+        row.innerHTML = createUserDataRow(user)
+        usersBodyTable.appendChild(row)
         addEventListenerToTableAction(user)
     });
 }
@@ -212,6 +215,6 @@ function addEventListenerToTableAction(user) {
 
     row.querySelector(`#users-icon-edit-${user.idCard}`).addEventListener('click', (event) => {
         openPopup(formEditUser.form)
-        chargeDataOnEditForm(formEditUser.form, user)
+        chargeDataOnForm(formEditUser.form, user)
     })
 }
