@@ -31,6 +31,17 @@ $.ajax({
     }
 })
 
+let roles = ''
+
+$.ajax({
+    url: '../backend/user-roles.php',
+    type: 'GET',
+    data: { read: '' },
+    success: function (response) {
+        roles = JSON.parse(response)
+    }
+})
+
 btnAddUser.addEventListener('click', (event) => {
     openPopup(formAddUser.form)
 })
@@ -69,8 +80,19 @@ function chargeDataOnViewForm(form, user) {
     form.querySelector('#select-view-user-rol').innerHTML = `<option>${user.rol}</option>`
 }
 
-function getRolesOption(rolSelect) {
+function chargeSelectRol(selectObject, rolSelectDefault) {
+    selectObject.innerHTML = ''
+    roles.forEach(rol => {
+        let option = document.createElement('option')
+        option.setAttribute('value', rol.name)
+        option.setAttribute('class', 'option')
+        option.textContent = rol.name
 
+        if (rol.name == rolSelectDefault)
+            option.setAttribute('selected', '')
+
+        selectObject.appendChild(option)
+    });
 }
 
 function chargeDataOnEditForm(form, user) {
@@ -79,7 +101,8 @@ function chargeDataOnEditForm(form, user) {
     form.querySelector('#input-edit-id-card').setAttribute('value', `${user.idCard}`)
     form.querySelector('#input-edit-email').setAttribute('value', `${user.email}`)
     form.querySelector('#input-edit-mobile-number').setAttribute('value', `${user.mobileNumber}`)
-    form.querySelector('#select-edit-user-rol').innerHTML = `<option value="${user.rol}">${user.rol}</option>`
+    
+    chargeSelectRol(form.querySelector('#select-edit-user-rol'), user.rol)
 }
 
 function alternateUserState(user) {
