@@ -56,27 +56,27 @@ include('./control-panel-header.php');
             <h2>Agregar nuevo usuario</h2>
         </legend>
         <div class="form-group">
-            <label for="input-username" class="label">Nombre y Apellido</label>
-            <input type="text" name="input-username" id="input-name" class="input-text" placeholder="john doe">
+            <label for="input-name" class="label">Nombre y Apellido</label>
+            <input type="text" name="input-name" id="input-name" class="input-text" placeholder="john doe">
         </div>
         <div class="form-group">
             <label for="input-username" class="label">Usuario</label>
             <input type="text" name="input-username" id="input-username" class="input-text" placeholder="johndoe123">
         </div>
         <div class="form-group">
-            <label for="input-username" class="label">Cédula</label>
-            <input type="text" name="input-username" id="input-id-card" class="input-text" placeholder="1725437437">
+            <label for="input-id-card" class="label">Cédula</label>
+            <input type="text" name="input-id-card" id="input-id-card" class="input-text" placeholder="1725437437">
         </div>
         <div class="form-group">
-            <label for="input-username" class="label">Correo electrónico</label>
-            <input type="email" name="input-username" id="input-email" class="input-text" placeholder="john.doe514@email.com">
+            <label for="input-email" class="label">Correo electrónico</label>
+            <input type="email" name="input-email" id="input-email" class="input-text" placeholder="john.doe514@email.com">
         </div>
         <div class="form-group">
-            <label for="input-username" class="label">Celular</label>
-            <input type="text" name="input-username" id="input-mobile-number" class="input-text" placeholder="0924536264">
+            <label for="input-mobile-number" class="label">Celular</label>
+            <input type="text" name="input-mobile-number" id="input-mobile-number" class="input-text" placeholder="0924536264">
         </div>
         <div class="form-group">
-            <label for="input-password" class="label">Rol</label>
+            <label for="select-user-rol" class="label">Rol</label>
             <select name="select-user-rol" id="select-user-rol" class="select">
                 <option value="admin" class="option">admin</option>
                 <option value="ventas" class="option">ventas</option>
@@ -88,8 +88,8 @@ include('./control-panel-header.php');
             <input type="password" name="input-password" id="input-password" class="input-text">
         </div>
         <div class="form-group">
-            <label for="input-password" class="label">Repetir contraseña</label>
-            <input type="password" name="input-password" id="input-repeated-password" class="input-text">
+            <label for="input-repeated-password" class="label">Repetir contraseña</label>
+            <input type="password" name="input-repeated-password" id="input-repeated-password" class="input-text">
         </div>
     </fieldset>
     <div class="form-footer">
@@ -105,27 +105,27 @@ include('./control-panel-header.php');
             <h2>Editar usuario</h2>
         </legend>
         <div class="form-group">
-            <label for="input-username" class="label">Nombre y Apellido</label>
-            <input type="text" name="input-username" id="input-edit-name" class="input-text">
+            <label for="input-edit-name" class="label">Nombre y Apellido</label>
+            <input type="text" name="input-edit-name" id="input-edit-name" class="input-text">
         </div>
         <div class="form-group">
-            <label for="input-username" class="label">Usuario</label>
-            <input type="text" name="input-username" id="input-edit-username" class="input-text">
+            <label for="input-edit-username" class="label">Usuario</label>
+            <input type="text" name="input-edit-username" id="input-edit-username" class="input-text">
         </div>
         <div class="form-group">
-            <label for="input-username" class="label">Cédula</label>
-            <input type="text" name="input-username" id="input-edit-id-card" class="input-text"" disabled>
+            <label for="input-edit-id-card" class="label">Cédula</label>
+            <input type="text" name="input-edit-id-card" id="input-edit-id-card" class="input-text"" disabled>
+        </div>
+        <div class=" form-group">
+            <label for="input-edit-email" class="label">Correo electrónico</label>
+            <input type="email" name="input-edit-email" id="input-edit-email" class="input-text">
         </div>
         <div class="form-group">
-            <label for="input-username" class="label">Correo electrónico</label>
-            <input type="email" name="input-username" id="input-edit-email" class="input-text">
+            <label for="input-edit-mobile-number" class="label">Celular</label>
+            <input type="text" name="input-edit-mobile-number" id="input-edit-mobile-number" class="input-text">
         </div>
         <div class="form-group">
-            <label for="input-username" class="label">Celular</label>
-            <input type="text" name="input-username" id="input-edit-mobile-number" class="input-text">
-        </div>
-        <div class="form-group">
-            <label for="input-password" class="label">Rol</label>
+            <label for="select-edit-user-rol" class="label">Rol</label>
             <select name="select-edit-user-rol" id="select-edit-user-rol" class="select">
                 <!-- <option value="admin" class="option">admin</option>
                 <option value="ventas" class="option">ventas</option>
@@ -133,12 +133,12 @@ include('./control-panel-header.php');
             </select>
         </div>
         <div class="form-group">
-            <label for="input-password" class="label">Nueva contraseña</label>
-            <input type="password" name="input-password" id="input-edit-password" class="input-text">
+            <label for="input-edit-password" class="label">Nueva contraseña</label>
+            <input type="password" name="input-edit-password" id="input-edit-password" class="input-text">
         </div>
         <div class="form-group">
-            <label for="input-password" class="label">Repetir contraseña</label>
-            <input type="password" name="input-password" id="input-edit-repeated-password" class="input-text">
+            <label for="input-edit-repeated-password" class="label">Repetir contraseña</label>
+            <input type="password" name="input-edit-repeated-password" id="input-edit-repeated-password" class="input-text">
         </div>
     </fieldset>
     <div class="form-footer">
@@ -154,27 +154,27 @@ include('./control-panel-header.php');
             <h2>Información de usuario</h2>
         </legend>
         <div class="form-group">
-            <label for="input-username" class="label">Nombre y Apellido</label>
-            <input type="text" name="input-username" id="input-view-name" class="input-text" placeholder="john doe" disabled>
+            <label for="input-view-name" class="label">Nombre y Apellido</label>
+            <input type="text" name="input-view-name" id="input-view-name" class="input-text" placeholder="john doe" disabled>
         </div>
         <div class="form-group">
             <label for="input-username" class="label">Usuario</label>
-            <input type="text" name="input-username" id="input-view-username" class="input-text" placeholder="johndoe123" disabled>
+            <input type="text" name="input-view-username" id="input-view-username" class="input-text" placeholder="johndoe123" disabled>
         </div>
         <div class="form-group">
-            <label for="input-username" class="label">Cédula</label>
-            <input type="text" name="input-username" id="input-view-id-card" class="input-text" placeholder="1725437437" disabled>
+            <label for="input-view-id-card" class="label">Cédula</label>
+            <input type="text" name="input-view-id-card" id="input-view-id-card" class="input-text" placeholder="1725437437" disabled>
         </div>
         <div class="form-group">
-            <label for="input-username" class="label">Correo electrónico</label>
-            <input type="email" name="input-username" id="input-view-email" class="input-text" placeholder="john.doe514@email.com" disabled>
+            <label for="input-view-email" class="label">Correo electrónico</label>
+            <input type="email" name="input-view-email" id="input-view-email" class="input-text" placeholder="john.doe514@email.com" disabled>
         </div>
         <div class="form-group">
-            <label for="input-username" class="label">Celular</label>
-            <input type="text" name="input-username" id="input-view-mobile-number" class="input-text" placeholder="0924536264" disabled>
+            <label for="input-view-mobile-number" class="label">Celular</label>
+            <input type="text" name="input-view-mobile-number" id="input-view-mobile-number" class="input-text" placeholder="0924536264" disabled>
         </div>
         <div class="form-group">
-            <label for="input-password" class="label">Rol</label>
+            <label for="select-view-user-rol" class="label">Rol</label>
             <select name="select-view-user-rol" id="select-view-user-rol" class="select" disabled>
             </select>
         </div>
