@@ -127,9 +127,9 @@ include('./control-panel-header.php');
         <div class="form-group">
             <label for="input-password" class="label">Rol</label>
             <select name="select-edit-user-rol" id="select-edit-user-rol" class="select">
-                <option value="admin" class="option">admin</option>
+                <!-- <option value="admin" class="option">admin</option>
                 <option value="ventas" class="option">ventas</option>
-                <option value="bodega" class="option">bodega</option>
+                <option value="bodega" class="option">bodega</option> -->
             </select>
         </div>
         <div class="form-group">
