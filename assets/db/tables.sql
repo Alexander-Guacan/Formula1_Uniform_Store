@@ -1,14 +1,66 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     24/08/2023 17:54:26                          */
+/* Created on:     26/08/2023 10:00:09                          */
 /*==============================================================*/
 
+
+drop table if exists Items;
+
+drop table if exists Measure;
+
+drop table if exists PurchaseOrder;
+
+drop table if exists PurchaseOrderDetails;
 
 drop table if exists UserOperations;
 
 drop table if exists UserRoles;
 
 drop table if exists Users;
+
+/*==============================================================*/
+/* Table: Items                                                 */
+/*==============================================================*/
+create table Items
+(
+   idItem               bigint not null,
+   idMeasure            smallint not null,
+   name                 char(30) not null,
+   price                decimal(2,2) not null,
+   stock                smallint not null,
+   primary key (idItem)
+);
+
+/*==============================================================*/
+/* Table: Measure                                               */
+/*==============================================================*/
+create table Measure
+(
+   idMeasure            smallint not null,
+   name                 char(30) not null,
+   primary key (idMeasure)
+);
+
+/*==============================================================*/
+/* Table: PurchaseOrder                                         */
+/*==============================================================*/
+create table PurchaseOrder
+(
+   idPurchaseOrder      bigint not null,
+   idCard               char(10) not null,
+   totalPrice           decimal(4,2),
+   primary key (idPurchaseOrder)
+);
+
+/*==============================================================*/
+/* Table: PurchaseOrderDetails                                  */
+/*==============================================================*/
+create table PurchaseOrderDetails
+(
+   idPurchaseOrder      bigint not null,
+   idItem               bigint not null,
+   primary key (idPurchaseOrder, idItem)
+);
 
 /*==============================================================*/
 /* Table: UserOperations                                        */
@@ -18,8 +70,7 @@ create table UserOperations
    idOperation          bigint not null auto_increment,
    idCard               char(10) not null,
    description          char(250) not null,
-   date                 date not null,
-   time                 time not null,
+   date                 timestamp not null,
    primary key (idOperation)
 );
 
@@ -49,6 +100,18 @@ create table Users
    isActive             bool not null default true,
    primary key (idCard)
 );
+
+alter table Items add constraint FK_medir foreign key (idMeasure)
+      references Measure (idMeasure) on delete restrict on update restrict;
+
+alter table PurchaseOrder add constraint FK_hacer foreign key (idCard)
+      references Users (idCard) on delete restrict on update restrict;
+
+alter table PurchaseOrderDetails add constraint FK_estar foreign key (idPurchaseOrder)
+      references PurchaseOrder (idPurchaseOrder) on delete restrict on update restrict;
+
+alter table PurchaseOrderDetails add constraint FK_estar2 foreign key (idItem)
+      references Items (idItem) on delete restrict on update restrict;
 
 alter table UserOperations add constraint FK_realizar foreign key (idCard)
       references Users (idCard) on delete restrict on update restrict;
