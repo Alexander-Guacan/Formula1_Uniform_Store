@@ -53,3 +53,12 @@
 
         $connection->query($queryUser);
     }
+
+    if (isset($_POST['delete'])) {
+        $query = "DELETE
+        FROM Users
+        WHERE idCard = '{$_POST['user']}'";
+
+        $connection->query($query);
+    }
+?>
