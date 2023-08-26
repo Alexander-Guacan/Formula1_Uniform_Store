@@ -61,4 +61,35 @@
 
         $connection->query($query);
     }
+
+    if (isset($_GET['add'])) {
+        $user = json_decode($_GET['user'], true);
+
+        $queryExistences = "SELECT *
+        FROM Users
+        WHERE idCard = '{$user['idCard']}' OR username = '{$user['username']}'";
+        $userExist = $connection->query($queryExistences)->num_rows > 0;
+
+        $response = array(
+            'userExist' => $userExist == 1
+        );
+
+        if ($userExist) {
+            echo json_encode($response);
+            return;
+        }
+
+        $queryRol = "SELECT idRol
+        FROM UserRoles
+        WHERE name = '{$user['rol']}'";
+        $idRol = $connection->query($queryRol)->fetch_array()['idRol'];
+
+        $password = password_hash($user['password'], PASSWORD_BCRYPT, ['cost' => 12]);
+
+        $queryAddUser = "INSERT INTO users(idCard, idRol, firstName, lastName, username, password, mobileNumber, email)
+        VALUES ('{$user['idCard']}', $idRol, '{$user['firstName']}', '{$user['lastName']}', '{$user['username']}', '$password', '{$user['mobileNumber']}', '{$user['email']}')";
+        $connection->query($queryAddUser);
+
+        echo json_encode($response);
+    }
 ?>
