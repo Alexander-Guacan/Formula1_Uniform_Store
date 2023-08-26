@@ -6,7 +6,7 @@ const menuBtns = {
             window.location.href = 'users.php'
         }),
         registers: createMenuBtn('Actividades', ['fa-solid', 'fa-rectangle-list'], function (event) {
-            console.log('register btn pressed')
+            window.location.href = 'user-operations.php'
         })
     },
     ventas: {
