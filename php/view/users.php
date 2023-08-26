@@ -24,28 +24,8 @@ include('./control-panel-header.php');
                 <th>Acción</th>
             </tr>
         </thead>
-        <tbody id="users-table-body">
-            <!-- <tr>
-                <td>1752937712</td>
-                <td>Carlos Trejo</td>
-                <td>0985635691</td>
-                <td>carlos.trejo1002@gmail.com</td>
-                <td>Bodega</td>
-                <td><span class="user-state state-success">Activado</span></td>
-                <td>
-                    <a href="#" class="icon" title="Ver información"><i class="fa-solid fa-eye text-success"></i></a>
-                    <a href="#" class="icon" title="Editar usuario"><i class="fa-solid fa-user-pen text-neutral"></i></a>
-                    <a href="#" class="icon" title="Desactivar cuenta"><i class="fa-solid fa-toggle-on text-success"></i></a>
-                    <a href="#" class="icon" title="Activar cuenta"><i class="fa-solid fa-toggle-off text-wrong"></i></a>
-                    <a href="#" class="icon" title="Eliminar usuario"><i class="fa-solid fa-user-xmark text-wrong"></i></a>
-                </td>
-            </tr> -->
-        </tbody>
-        <tfoot id="users-table-footer">
-            <!-- <tr>
-                <td colspan="7">No existen usuarios</td>
-            </tr> -->
-        </tfoot>
+        <tbody id="users-table-body"></tbody>
+        <tfoot id="users-table-footer"></tfoot>
     </table>
 </section>
 
