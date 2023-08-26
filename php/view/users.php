@@ -6,7 +6,7 @@ include('./control-panel-header.php');
 <section>
     <article class="table-actions">
         <div class="table-actions_left">
-            <!-- <input type="search" id="search-users" placeholder="Buscar usuario por nombre" class="input-search"> -->
+            <input type="search" id="search-users" placeholder="Buscar usuario por nombre" class="input-search">
         </div>
         <div class="table-actions_right">
             <button type="button" class="btn" id="btn-add-user"><i class="fa-solid fa-user-plus"></i>&emsp;Agregar usuario</button>
