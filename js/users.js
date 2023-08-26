@@ -202,6 +202,16 @@ function showUsers() {
     });
 }
 
+function removeRow(row) {
+    usersBodyTable.removeChild(row)
+    if (!usersBodyTable.hasChildNodes())
+        usersFooterTable.innerHTML = `
+        <tr>
+            <td colspan="7">No existen usuarios</td>
+        </tr>
+       `
+}
+
 function addEventListenerToTableAction(user) {
     let row = usersBodyTable.querySelector(`#row-${user.idCard}`)
     row.querySelector(`#users-icon-view-${user.idCard}`).addEventListener('click', (event) => {
@@ -216,5 +226,16 @@ function addEventListenerToTableAction(user) {
     row.querySelector(`#users-icon-edit-${user.idCard}`).addEventListener('click', (event) => {
         openPopup(formEditUser.form)
         chargeDataOnForm(formEditUser.form, user)
+    })
+
+    row.querySelector(`#users-icon-delete-${user.idCard}`).addEventListener('click', (event) => {
+        $.ajax({
+            url: '../backend/users.php',
+            type: 'POST',
+            data: { delete: '', user: user.idCard },
+            success: function (response) {
+                removeRow(row)
+            }
+        })
     })
 }
