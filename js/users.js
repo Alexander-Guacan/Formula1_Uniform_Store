@@ -1,6 +1,7 @@
 let usersBodyTable = document.querySelector('#users-table-body')
 let usersFooterTable = document.querySelector('#users-table-footer')
 let btnAddUser = document.querySelector('#btn-add-user')
+let inputSearch = document.querySelector('#search-users')
 let formAddUser = {
     form: document.querySelector('#form-add-user'),
     btnClose: document.querySelector('#form-add-user .popup_btn-close'),
@@ -18,17 +19,18 @@ let formEditUser = {
     btnSubmit: document.querySelector('#form-edit-user .form-footer button')
 }
 
-let users = ''
+function showAllUsers(){
+    $.ajax({
+        url: '../backend/users.php',
+        type: 'GET',
+        data: { readAll: '' },
+        success: function (response) {
+            showUsers(JSON.parse(response))
+        }
+    })
+}
 
-$.ajax({
-    url: '../backend/users.php',
-    type: 'GET',
-    data: { readAll: '' },
-    success: function (response) {
-        users = JSON.parse(response)
-        showUsers()
-    }
-})
+showAllUsers()
 
 let roles = ''
 
@@ -39,6 +41,21 @@ $.ajax({
     success: function (response) {
         roles = JSON.parse(response)
     }
+})
+
+
+inputSearch.addEventListener('keyup', (event) => {
+    if (inputSearch.value == '')
+        showAllUsers()
+
+    $.ajax({
+        url: '../backend/users.php',
+        type: 'GET',
+        data: { search: inputSearch.value },
+        success: function (response) {
+            showUsers(JSON.parse(response))
+        }
+    })
 })
 
 btnAddUser.addEventListener('click', (event) => {
@@ -63,7 +80,7 @@ function registerActivity(description) {
         url: '../backend/user-operations.php',
         type: 'POST',
         data: { insert: '', description },
-        success: function (response) {}
+        success: function (response) { }
     })
 }
 
@@ -96,7 +113,7 @@ formAddUser.form.addEventListener('submit', (event) => {
         data: { add: '', user: JSON.stringify(user) },
         success: function (response) {
             response = JSON.parse(response)
-            
+
             if (response['userExist'])
                 return showErrorMsgOnForm(formAddUser.form, 'El usuario o cedula ya existe')
 
@@ -104,7 +121,7 @@ formAddUser.form.addEventListener('submit', (event) => {
             closePopup(formAddUser.form)
             registerActivity(`Nuevo usuario creado: ${user.idCard}`)
         }
-    })    
+    })
 })
 
 formViewUser.btnClose.addEventListener('click', (event) => {
@@ -246,7 +263,10 @@ function createUserDataRow(user) {
     return dataRow
 }
 
-function showUsers() {
+function showUsers(users) {
+    usersBodyTable.innerHTML = ''
+    usersFooterTable.innerHTML = ''
+
     if (!users.length)
         return usersFooterTable.innerHTML = `
         <tr>
