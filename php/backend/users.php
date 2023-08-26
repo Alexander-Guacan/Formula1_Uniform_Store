@@ -92,4 +92,37 @@
 
         echo json_encode($response);
     }
+
+    if (isset($_GET['search'])) {
+        $name = mb_split(' ', $_GET['search']);
+
+        $firstName = $name[0];
+
+        session_start();
+
+        $query = "SELECT * FROM users
+        JOIN UserRoles ON Users.idRol = UserRoles.idRol
+        WHERE idCard != '{$_SESSION['user']['idCard']}' AND firstName LIKE '$firstName%'";
+
+        if (count($name) > 1 && $name[1] != '')
+            $query = $query." AND lastName LIKE '{$name[1]}%'";
+
+        $response = $connection->query($query);
+        $json = array();
+
+        while ($row = $response->fetch_array()) {
+            $json[] = array(
+                'idCard' => $row['idCard'],
+                'rol' => $row['name'],
+                'firstName' => $row['firstName'],
+                'lastName' => $row['lastName'],
+                'mobileNumber' => $row['mobileNumber'],
+                'email' => $row['email'],
+                'username' => $row['username'],
+                'isActive' => $row['isActive'] == '1',
+            );
+        }
+
+        echo json_encode($json);
+    }
 ?>
