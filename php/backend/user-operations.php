@@ -12,4 +12,24 @@
         $connection->query($query);
     }
 
+    if (isset($_GET['read'])) {
+        $query = "SELECT *
+        FROM UserOperations";
+
+        $response = $connection->query($query);
+
+        $json = array();
+
+        while ($row = $response->fetch_array()) {
+            $json[] = array(
+                'id' => $row['idOperation'],
+                'description' => $row['description'],
+                'officer' => $row['idCard'],
+                'date' => $row['date']
+            );
+        }
+
+        echo json_encode($json);
+    }
+
 ?>
