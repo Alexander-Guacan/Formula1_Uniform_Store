@@ -6,7 +6,7 @@ include('./control-panel-header.php');
 <section>
     <article class="table-actions">
         <div class="table-actions_left">
-            <input type="search" id="search-users" placeholder="Buscar usuario por nombre" class="input-search">
+            <!-- <input type="search" id="search-users" placeholder="Buscar usuario por nombre" class="input-search"> -->
         </div>
         <div class="table-actions_right">
             <button type="button" class="btn" id="btn-add-user"><i class="fa-solid fa-user-plus"></i>&emsp;Agregar usuario</button>
@@ -36,8 +36,12 @@ include('./control-panel-header.php');
             <h2>Agregar nuevo usuario</h2>
         </legend>
         <div class="form-group">
-            <label for="input-name" class="label">Nombre y Apellido</label>
-            <input type="text" name="input-name" id="input-name" class="input-text" placeholder="john doe">
+            <label for="input-first-name" class="label">Nombre</label>
+            <input type="text" name="input-first-name" id="input-first-name" class="input-text" placeholder="john">
+        </div>
+        <div class="form-group">
+            <label for="input-last-name" class="label">Apellido</label>
+            <input type="text" name="input-last-name" id="input-last-name" class="input-text" placeholder="doe">
         </div>
         <div class="form-group">
             <label for="input-username" class="label">Usuario</label>
@@ -45,7 +49,7 @@ include('./control-panel-header.php');
         </div>
         <div class="form-group">
             <label for="input-id-card" class="label">Cédula</label>
-            <input type="text" name="input-id-card" id="input-id-card" class="input-text" placeholder="1725437437">
+            <input type="text" name="input-id-card" id="input-id-card" class="input-text" placeholder="1725437437" pattern="[0-9]{10}" oninvalid="setCustomValidity('El formato correcto es: 1793593306')">
         </div>
         <div class="form-group">
             <label for="input-email" class="label">Correo electrónico</label>
@@ -53,7 +57,7 @@ include('./control-panel-header.php');
         </div>
         <div class="form-group">
             <label for="input-mobile-number" class="label">Celular</label>
-            <input type="text" name="input-mobile-number" id="input-mobile-number" class="input-text" placeholder="0924536264">
+            <input type="text" name="input-mobile-number" id="input-mobile-number" class="input-text" placeholder="0924536264" pattern="[0-9]{10}" oninvalid="setCustomValidity('El formato correcto es: 0982723942')">
         </div>
         <div class="form-group">
             <label for="select-user-rol" class="label">Rol</label>
@@ -106,7 +110,7 @@ include('./control-panel-header.php');
         </div>
         <div class="form-group">
             <label for="input-edit-mobile-number" class="label">Celular</label>
-            <input type="text" name="input-edit-mobile-number" id="input-edit-mobile-number" class="input-text">
+            <input type="text" name="input-edit-mobile-number" id="input-edit-mobile-number" class="input-text" pattern="[0-9]{10}" oninvalid="setCustomValidity('El formato correcto es: 0982723942')">
         </div>
         <div class="form-group">
             <label for="select-edit-user-rol" class="label">Rol</label>
