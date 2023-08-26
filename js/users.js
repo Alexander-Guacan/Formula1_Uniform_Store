@@ -49,6 +49,54 @@ formAddUser.btnClose.addEventListener('click', (event) => {
     closePopup(formAddUser.form)
 })
 
+function incompleteForm(data) {
+    for (let input in data) {
+        if (!data[input])
+            return true
+    }
+
+    return false
+}
+
+formAddUser.form.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    const data = Object.fromEntries(new FormData(event.target))
+
+    if (incompleteForm(data))
+        return showErrorMsgOnForm(formAddUser.form, 'Formulario incompleto')
+
+    if (data['input-password'] != data['input-repeated-password'])
+        return showErrorMsgOnForm(formAddUser.form, 'Las contraseñas deben ser iguales')
+
+    let user = {
+        firstName: data['input-first-name'],
+        lastName: data['input-last-name'],
+        username: data['input-username'],
+        idCard: data['input-id-card'],
+        email: data['input-email'],
+        mobileNumber: data['input-mobile-number'],
+        rol: data['select-user-rol'],
+        password: data['input-password'],
+        isActive: true
+    }
+
+    $.ajax({
+        url: '../backend/users.php',
+        type: 'GET',
+        data: { add: '', user: JSON.stringify(user) },
+        success: function (response) {
+            response = JSON.parse(response)
+            
+            if (response['userExist'])
+                return showErrorMsgOnForm(formAddUser.form, 'El usuario ya existe')
+
+            addRow(user)
+            closePopup(formAddUser.form)
+        }
+    })
+})
+
 formViewUser.btnClose.addEventListener('click', (event) => {
     closePopup(formViewUser.form)
 })
@@ -94,6 +142,7 @@ function openPopup(form) {
 
 function closePopup(form) {
     form.classList.remove('popup--open')
+    $(`#${form.id}`).trigger('reset')
 }
 
 function showErrorMsgOnForm(form, msg) {
@@ -194,12 +243,16 @@ function showUsers() {
        `
 
     users.forEach(user => {
-        let row = document.createElement('tr')
-        row.id = `row-${user.idCard}`
-        row.innerHTML = createUserDataRow(user)
-        usersBodyTable.appendChild(row)
-        addEventListenerToTableAction(user)
+        addRow(user)
     });
+}
+
+function addRow(user) {
+    let row = document.createElement('tr')
+    row.id = `row-${user.idCard}`
+    row.innerHTML = createUserDataRow(user)
+    usersBodyTable.appendChild(row)
+    addEventListenerToTableAction(user)
 }
 
 function removeRow(row) {
