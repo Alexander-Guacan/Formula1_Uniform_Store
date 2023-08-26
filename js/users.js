@@ -58,6 +58,15 @@ function incompleteForm(data) {
     return false
 }
 
+function registerActivity(description) {
+    $.ajax({
+        url: '../backend/user-operations.php',
+        type: 'POST',
+        data: { insert: '', description },
+        success: function (response) {}
+    })
+}
+
 formAddUser.form.addEventListener('submit', (event) => {
     event.preventDefault()
 
@@ -89,12 +98,13 @@ formAddUser.form.addEventListener('submit', (event) => {
             response = JSON.parse(response)
             
             if (response['userExist'])
-                return showErrorMsgOnForm(formAddUser.form, 'El usuario ya existe')
+                return showErrorMsgOnForm(formAddUser.form, 'El usuario o cedula ya existe')
 
             addRow(user)
             closePopup(formAddUser.form)
+            registerActivity(`Nuevo usuario creado: ${user.idCard}`)
         }
-    })
+    })    
 })
 
 formViewUser.btnClose.addEventListener('click', (event) => {
@@ -132,6 +142,7 @@ formEditUser.form.addEventListener('submit', (event) => {
         success: function (response) {
             updateRow(user)
             closePopup(formEditUser.form)
+            registerActivity(`Actualizar informacion de usuario: ${user.idCard}`)
         }
     })
 })
@@ -212,6 +223,7 @@ function alternateUserState(user) {
         success: function (response) {
             user.isActive = !user.isActive
             updateRow(user)
+            registerActivity(`Cambiar estado de cuenta: ${user.idCard}`)
         }
     })
 }
@@ -288,6 +300,7 @@ function addEventListenerToTableAction(user) {
             data: { delete: '', user: user.idCard },
             success: function (response) {
                 removeRow(row)
+                registerActivity(`Eliminar cuenta: ${user.idCard}`)
             }
         })
     })
