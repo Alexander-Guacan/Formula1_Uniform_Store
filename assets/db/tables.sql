@@ -1,8 +1,10 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     26/08/2023 10:00:09                          */
+/* Created on:     26/08/2023 14:42:39                          */
 /*==============================================================*/
 
+
+drop table if exists InitialInventory;
 
 drop table if exists Items;
 
@@ -19,11 +21,23 @@ drop table if exists UserRoles;
 drop table if exists Users;
 
 /*==============================================================*/
+/* Table: InitialInventory                                      */
+/*==============================================================*/
+create table InitialInventory
+(
+   idInitialInventory   smallint not null auto_increment,
+   price                decimal(2,2) not null,
+   stock                smallint not null,
+   primary key (idInitialInventory)
+);
+
+/*==============================================================*/
 /* Table: Items                                                 */
 /*==============================================================*/
 create table Items
 (
-   idItem               bigint not null,
+   idItem               bigint not null auto_increment,
+   idInitialInventory   smallint not null,
    idMeasure            smallint not null,
    name                 char(30) not null,
    price                decimal(2,2) not null,
@@ -36,7 +50,7 @@ create table Items
 /*==============================================================*/
 create table Measure
 (
-   idMeasure            smallint not null,
+   idMeasure            smallint not null auto_increment,
    name                 char(30) not null,
    primary key (idMeasure)
 );
@@ -46,7 +60,7 @@ create table Measure
 /*==============================================================*/
 create table PurchaseOrder
 (
-   idPurchaseOrder      bigint not null,
+   idPurchaseOrder      bigint not null auto_increment,
    idCard               char(10) not null,
    totalPrice           decimal(4,2),
    primary key (idPurchaseOrder)
@@ -57,9 +71,10 @@ create table PurchaseOrder
 /*==============================================================*/
 create table PurchaseOrderDetails
 (
+   idPurchaseOrderDetails bigint not null,
    idPurchaseOrder      bigint not null,
    idItem               bigint not null,
-   primary key (idPurchaseOrder, idItem)
+   primary key (idPurchaseOrderDetails)
 );
 
 /*==============================================================*/
@@ -100,6 +115,9 @@ create table Users
    isActive             bool not null default true,
    primary key (idCard)
 );
+
+alter table Items add constraint FK_iniciar foreign key (idInitialInventory)
+      references InitialInventory (idInitialInventory) on delete restrict on update restrict;
 
 alter table Items add constraint FK_medir foreign key (idMeasure)
       references Measure (idMeasure) on delete restrict on update restrict;
