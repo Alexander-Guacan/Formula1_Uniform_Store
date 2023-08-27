@@ -61,15 +61,15 @@
         </div>
         <div class="form-group">
             <label for="input-price" class="label">Precio</label>
-            <input type="number" name="input-price" id="input-price" class="input-text">
+            <input type="number" name="input-price" id="input-price" class="input-text" min="0.01" step="0.01" max="99.99">
         </div>
         <div class="form-group colspan-2">
             <label for="textarea-name" class="label">Nombre</label>
             <textarea name="textarea-name" id="textarea-name" class="textarea" disabled></textarea>
         </div>
         <div class="form-group">
-            <label for="input-stock" class="label">Cantidad</label>
-            <input type="number" name="input-stock" id="input-stock" class="input-text" min="1" step="1" max="999">
+            <label for="input-quantity" class="label">Cantidad</label>
+            <input type="number" name="input-quantity" id="input-quantity" class="input-text" min="1" step="1" max="999">
         </div>
         <div class="form-group">
             <label for="select-items-measure" class="label">Medida</label>
@@ -101,8 +101,8 @@
             <textarea name="textarea-edit-name" id="textarea-edit-name" cols="30" rows="10" class="textarea" disabled></textarea>
         </div>
         <div class="form-group">
-            <label for="input-edit-stock" class="label">Cantidad</label>
-            <input type="text" name="input-edit-stock" id="input-edit-stock" class="input-text">
+            <label for="input-edit-quantity" class="label">Cantidad</label>
+            <input type="text" name="input-edit-quantity" id="input-edit-quantity" class="input-text">
         </div>
         <div class="form-group">
             <label for="select-edit-items-measure" class="label">Medida</label>
@@ -134,8 +134,8 @@
             <textarea name="textarea-view-name" id="textarea-view-name" class="textarea" disabled></textarea>
         </div>
         <div class="form-group">
-            <label for="input-view-stock" class="label">Cantidad</label>
-            <input type="text" name="input-view-stock" id="input-view-stock" class="input-text" disabled>
+            <label for="input-view-quantity" class="label">Cantidad</label>
+            <input type="text" name="input-view-quantity" id="input-view-quantity" class="input-text" disabled>
         </div>
         <div class="form-group">
             <label for="select-view-items-measure" class="label">Medida</label>
