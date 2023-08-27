@@ -24,6 +24,24 @@ btnCancelPurchaseOrder.addEventListener('click', (event) => {
     window.location.href = 'items.php'
 })
 
+let systemMsg = {
+    popup: document.querySelector('.system-msg'),
+    btnClose: document.querySelector('.system-msg .popup_btn-close')
+}
+
+systemMsg.btnClose.addEventListener('click', (event) => {
+    closePopup(systemMsg.popup)
+})
+
+let btnSubmitPurchaseOrder = document.querySelector('#btn-buy-items')
+
+btnSubmitPurchaseOrder.addEventListener('click', (event) => {
+    if (!itemsInserted.length)
+        return showSystemMsg(systemMsg.popup, 'wrong', 'No se han agregado items a la orden de compra')
+
+    showSystemMsg(systemMsg.popup, 'success', 'Compra realizada exitosamente')
+})
+
 let formAddItem = {
     form: document.querySelector('#form-add-item'),
     btnClose: document.querySelector('#form-add-item .popup_btn-close'),
@@ -33,6 +51,8 @@ let formAddItem = {
 
 formAddItem.btnClose.addEventListener('click', (event) => {
     closePopup(formAddItem.form)
+    cleanForm(formAddItem.form)
+    resetForm(formAddItem.form)
 })
 
 let itemsInserted = []
@@ -61,6 +81,8 @@ formAddItem.form.addEventListener('submit', (event) => {
     updateFooter()
 
     closePopup(formAddItem.form)
+    cleanForm(formAddItem.form)
+    resetForm(formAddItem.form)
 })
 
 let inputSearch = document.querySelector('#search-items')
@@ -132,8 +154,18 @@ function openPopup(form) {
 
 function closePopup(form) {
     form.classList.remove('popup--open')
-    $(`#${form.id}`).trigger('reset')
     cleanForm(form)
+}
+
+function showSystemMsg(popup, state, msg) {
+    popup.classList.add(`state-${state}`)
+    popup.querySelector('#system-msg').textContent = msg
+    openPopup(popup)
+    
+    setTimeout(() => {
+        closePopup(popup)
+        popup.classList.remove(`state-${state}`)
+    }, 3000);
 }
 
 function incompleteForm(data) {
@@ -257,6 +289,10 @@ function chargeDataOnEditForm(form, item) {
     form.querySelector('#textarea-edit-name').innerHTML = `${item.name}`
     form.querySelector('#input-edit-stock').setAttribute('value', `${item.stock}`)
     form.querySelector('#select-edit-items-measure').innerHTML = `<option>${item.measure}</option>`
+}
+
+function resetForm(form) {
+    $(`#${form.id}`).trigger('reset')
 }
 
 function cleanForm(form) {
