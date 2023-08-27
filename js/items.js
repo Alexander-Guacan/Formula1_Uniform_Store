@@ -89,7 +89,7 @@ formAddItem.form.addEventListener('submit', (event) => {
 
             addRow(item)
             closePopup(formAddItem.form)
-            registerActivity(`Nuevo item creado: ${item.name}`)
+            registerActivity(`Nuevo item creado. Id: ${item.id}, nombre: ${item.name}`)
             ++nextId
         }
     })
@@ -140,7 +140,7 @@ formEditItem.form.addEventListener('submit', (event) => {
             
             updateRow(item)
             closePopup(formEditItem.form)
-            registerActivity(`Actualizar informacion de item: ${item.id}`)
+            registerActivity(`Actualizar informacion de item. Id: ${item.id}, nombre: ${item.name}`)
         }
     })
 })
@@ -234,10 +234,11 @@ function createDataRow(item) {
     <td>${item.price}</td>
     <td>${item.stock}</td>
     <td>${item.measure}</td>
+    <td><span class="register-state ${item.isActive ? 'state-success' : 'state-wrong'}">${item.isActive ? 'Activo' : 'Inactivo'}</span></td>
     <td>
         <a href="#" class="icon" title="Ver información" id="items-icon-view-${item.id}"><i class="fa-solid fa-eye text-success"></i></a>
         <a href="#" class="icon" title="Editar item" id="items-icon-edit-${item.id}"><i class="fa-solid fa-pencil text-neutral"></i></a>
-        <a href="#" class="icon" title="Eliminar item" id="items-icon-delete-${item.id}"><i class="fa-solid fa-trash text-wrong"></i></a>
+        <a href="#" class="icon" title="${item.isActive ? 'Desactivar item' : 'Activar item'}" id="items-icon-state-${item.id}"><i class="fa-solid ${item.isActive ? 'fa-toggle-on text-success' : 'fa-toggle-off text-wrong'} "></i></a>
     </td>
     `
     return dataRow
@@ -246,16 +247,6 @@ function createDataRow(item) {
 function updateRow(item) {
     document.querySelector(`#row-${item.id}`).innerHTML = createDataRow(item)
     addEventListenerToTableAction(item)
-}
-
-function removeRow(row) {
-    itemsBodyTable.removeChild(row)
-    if (!itemsBodyTable.hasChildNodes())
-        itemsFooterTable.innerHTML = `
-        <tr>
-            <td colspan="6">No existen items</td>
-        </tr>
-       `
 }
 
 function addEventListenerToTableAction(item) {
@@ -270,25 +261,8 @@ function addEventListenerToTableAction(item) {
         chargeDataOnEditForm(formEditItem.form, item)
     })
 
-    row.querySelector(`#items-icon-delete-${item.id}`).addEventListener('click', (event) => {
-        $.ajax({
-            url: '../backend/items.php',
-            type: 'POST',
-            data: { delete: '', item: item.id },
-            success: function (response) {
-                removeRow(row)
-                registerActivity(`Eliminar item: ${item.id}`)
-
-                $.ajax({
-                    url: '../backend/items.php',
-                    type: 'GET',
-                    data: { nextId: '' },
-                    success: function (response) {
-                        nextId = response
-                    }
-                })
-            }
-        })
+    row.querySelector(`#items-icon-state-${item.id}`).addEventListener('click', (event) => {
+        alternateItemState(item)
     })
 }
 
@@ -307,6 +281,19 @@ function chargeDataOnEditForm(form, item) {
     form.querySelector('#input-edit-stock').setAttribute('value', `${item.stock}`)
 
     chargeSelect(form.querySelector('#select-edit-items-measure'), measures, item.measure)
+}
+
+function alternateItemState(item) {
+    $.ajax({
+        url: '../backend/items.php',
+        type: 'POST',
+        data: { updateState: '', idItem: item.id, isActive: item.isActive },
+        success: function (response) {
+            item.isActive = !item.isActive
+            updateRow(item)
+            registerActivity(`Cambiar estado de item. Id: ${item.id}, nombre: ${item.name}`)
+        }
+    })
 }
 
 function registerActivity(description) {
