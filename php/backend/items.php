@@ -56,7 +56,8 @@
                 'price' => $row['price'],
                 'name' => $row['itemName'],
                 'stock' => $row['stock'],
-                'measure' => $row['measureName']
+                'measure' => $row['measureName'],
+                'isActive' => $row['isActive'] == '1'
             );
         }
 
@@ -95,12 +96,12 @@
         echo json_encode($response);
     }
 
-    if (isset($_POST['delete'])) {
-        $query = "DELETE
-        FROM Items
-        WHERE idItem = '{$_POST['item']}'";
-
-        $connection->query($query);
+    if (isset($_POST['updateState'])) {
+        $reverseState = $_POST['isActive'] == 'true' ? 0 : 1;
+        $query = "UPDATE Items
+        SET isActive = $reverseState
+        WHERE idItem = '{$_POST['idItem']}'";
+        $result = $connection->query($query);
     }
 
     if (isset($_GET['search'])) {
