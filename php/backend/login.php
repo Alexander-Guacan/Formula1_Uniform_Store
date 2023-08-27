@@ -4,7 +4,7 @@
     if (isset($_POST['login'])) {
         $login = json_decode($_POST['login'], true);
         
-        $query =  "SELECT Users.idCard, Users.username, Users.firstName, Users.lastName, UserRoles.name as rolName, Users.password
+        $query =  "SELECT *
         FROM Users JOIN UserRoles
         ON Users.idRol = UserRoles.idRol
         WHERE Users.username = '{$login['input-username']}'";
@@ -13,12 +13,12 @@
         
         $responseWrong = array(
             'success' => false,
-            'result' => 'Usuario o contraseña incorrectos'
+            'result' => 'Usuario o contraseña incorrectos, o su cuenta se encuentra desactivada'
         );
 
         $userFound = $result->fetch_array();
 
-        if (!$result->num_rows || !password_verify($login['input-password'], $userFound['password']))
+        if (!$result->num_rows || !password_verify($login['input-password'], $userFound['password']) || !$userFound['isActive'])
             die(json_encode($responseWrong));
 
         session_start();
@@ -27,7 +27,7 @@
             'username' => $userFound['username'],
             'firstName' => $userFound['firstName'],
             'lastName' => $userFound['lastName'],
-            'rol' => $userFound['rolName'],
+            'rol' => $userFound['name']
         );
         
         echo json_encode(array(
