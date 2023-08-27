@@ -301,10 +301,6 @@ img.logo {
     color: var(--color-text);
 }
 
-.input-search_product {
-    width: 100%;
-}
-
 .btn {
     border: 0;
     border-radius: var(--border-radius);
