@@ -74,7 +74,8 @@ formAddItem.form.addEventListener('submit', (event) => {
         price: data['input-price'],
         name: data['textarea-name'],
         stock: data['input-stock'],
-        measure: data['select-items-measure']
+        measure: data['select-items-measure'],
+        isActive: true
     }
 
     $.ajax({
