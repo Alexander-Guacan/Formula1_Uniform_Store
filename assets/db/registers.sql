@@ -5,7 +5,7 @@ INSERT INTO userroles (name) VALUES
 ('bodega');
 
 /* Measures */
-INSERT INTO measure (name) VALUES
+INSERT INTO measures (name) VALUES
 ('cm'),
 ('m'),
 ('lb'),

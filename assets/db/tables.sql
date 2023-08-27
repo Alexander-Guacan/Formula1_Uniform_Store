@@ -1,18 +1,18 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     26/08/2023 14:42:39                          */
+/* Created on:     27/08/2023 3:56:25                           */
 /*==============================================================*/
 
 
-drop table if exists InitialInventory;
+drop table if exists InitialItems;
 
 drop table if exists Items;
 
-drop table if exists Measure;
+drop table if exists Measures;
 
-drop table if exists PurchaseOrder;
+drop table if exists PurchaseOrders;
 
-drop table if exists PurchaseOrderDetails;
+drop table if exists PurchaseOrdersDetails;
 
 drop table if exists UserOperations;
 
@@ -21,14 +21,16 @@ drop table if exists UserRoles;
 drop table if exists Users;
 
 /*==============================================================*/
-/* Table: InitialInventory                                      */
+/* Table: InitialItems                                          */
 /*==============================================================*/
-create table InitialInventory
+create table InitialItems
 (
-   idInitialInventory   smallint not null auto_increment,
-   price                decimal(2,2) not null,
+   idInitialItem        bigint not null,
+   idMeasure            smallint not null,
+   name                 char(30) not null,
+   price                float(3,2) not null,
    stock                smallint not null,
-   primary key (idInitialInventory)
+   primary key (idInitialItem)
 );
 
 /*==============================================================*/
@@ -37,18 +39,17 @@ create table InitialInventory
 create table Items
 (
    idItem               bigint not null auto_increment,
-   idInitialInventory   smallint not null,
    idMeasure            smallint not null,
    name                 char(30) not null,
-   price                decimal(2,2) not null,
+   price                float(3,2) not null,
    stock                smallint not null,
    primary key (idItem)
 );
 
 /*==============================================================*/
-/* Table: Measure                                               */
+/* Table: Measures                                              */
 /*==============================================================*/
-create table Measure
+create table Measures
 (
    idMeasure            smallint not null auto_increment,
    name                 char(30) not null,
@@ -56,9 +57,9 @@ create table Measure
 );
 
 /*==============================================================*/
-/* Table: PurchaseOrder                                         */
+/* Table: PurchaseOrders                                        */
 /*==============================================================*/
-create table PurchaseOrder
+create table PurchaseOrders
 (
    idPurchaseOrder      bigint not null auto_increment,
    idCard               char(10) not null,
@@ -67,14 +68,14 @@ create table PurchaseOrder
 );
 
 /*==============================================================*/
-/* Table: PurchaseOrderDetails                                  */
+/* Table: PurchaseOrdersDetails                                 */
 /*==============================================================*/
-create table PurchaseOrderDetails
+create table PurchaseOrdersDetails
 (
-   idPurchaseOrderDetails bigint not null,
+   idPurchaseOrderDetail bigint not null,
    idPurchaseOrder      bigint not null,
    idItem               bigint not null,
-   primary key (idPurchaseOrderDetails)
+   primary key (idPurchaseOrderDetail)
 );
 
 /*==============================================================*/
@@ -116,19 +117,19 @@ create table Users
    primary key (idCard)
 );
 
-alter table Items add constraint FK_iniciar foreign key (idInitialInventory)
-      references InitialInventory (idInitialInventory) on delete restrict on update restrict;
+alter table InitialItems add constraint FK_medir2 foreign key (idMeasure)
+      references Measures (idMeasure) on delete restrict on update restrict;
 
 alter table Items add constraint FK_medir foreign key (idMeasure)
-      references Measure (idMeasure) on delete restrict on update restrict;
+      references Measures (idMeasure) on delete restrict on update restrict;
 
-alter table PurchaseOrder add constraint FK_hacer foreign key (idCard)
+alter table PurchaseOrders add constraint FK_hacer foreign key (idCard)
       references Users (idCard) on delete restrict on update restrict;
 
-alter table PurchaseOrderDetails add constraint FK_estar foreign key (idPurchaseOrder)
-      references PurchaseOrder (idPurchaseOrder) on delete restrict on update restrict;
+alter table PurchaseOrdersDetails add constraint FK_estar foreign key (idPurchaseOrder)
+      references PurchaseOrders (idPurchaseOrder) on delete restrict on update restrict;
 
-alter table PurchaseOrderDetails add constraint FK_estar2 foreign key (idItem)
+alter table PurchaseOrdersDetails add constraint FK_estar2 foreign key (idItem)
       references Items (idItem) on delete restrict on update restrict;
 
 alter table UserOperations add constraint FK_realizar foreign key (idCard)
