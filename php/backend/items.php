@@ -121,6 +121,31 @@
                 'price' => $row['price'],
                 'name' => $row['itemName'],
                 'stock' => $row['stock'],
+                'measure' => $row['measureName'],
+                'isActive' => $row['isActive']
+            );
+        }
+
+        echo json_encode($json);
+    }
+
+    if (isset($_GET['searchActives'])) {
+        $name = $_GET['searchActives'];
+
+        $query = "SELECT *, Items.name as itemName, Measures.name as measureName
+        FROM Items
+        JOIN Measures ON Items.idMeasure = Measures.idMeasure
+        WHERE Items.name LIKE '$name%' AND Items.isActive = '1'";
+
+        $response = $connection->query($query);
+        $json = array();
+
+        while ($row = $response->fetch_array()) {
+            $json[] = array(
+                'id' => $row['idItem'],
+                'price' => $row['price'],
+                'name' => $row['itemName'],
+                'stock' => $row['stock'],
                 'measure' => $row['measureName']
             );
         }
