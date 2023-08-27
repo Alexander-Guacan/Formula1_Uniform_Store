@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     27/08/2023 3:56:25                           */
+/* Created on:     27/08/2023 13:09:56                          */
 /*==============================================================*/
 
 
@@ -43,6 +43,7 @@ create table Items
    name                 char(30) not null,
    price                float(3,2) not null,
    stock                smallint not null,
+   isActive             bool not null default true,
    primary key (idItem)
 );
 
@@ -63,7 +64,7 @@ create table PurchaseOrders
 (
    idPurchaseOrder      bigint not null auto_increment,
    idCard               char(10) not null,
-   totalPrice           decimal(4,2),
+   totalPrice           float(8,2) not null,
    primary key (idPurchaseOrder)
 );
 
@@ -72,9 +73,11 @@ create table PurchaseOrders
 /*==============================================================*/
 create table PurchaseOrdersDetails
 (
-   idPurchaseOrderDetail bigint not null,
+   idPurchaseOrderDetail bigint not null auto_increment,
    idPurchaseOrder      bigint not null,
    idItem               bigint not null,
+   itemPrice            float(3,2) not null,
+   quantityItemPurchased int not null,
    primary key (idPurchaseOrderDetail)
 );
 
