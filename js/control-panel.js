@@ -22,7 +22,7 @@ const menuBtns = {
             window.location.href = 'items.php'
         }),
         initialInventory: createMenuBtn('Inventario inicial', ['fa-solid', 'fa-warehouse'], function (event) {
-            
+            window.location.href = 'initial-items.php'
         }),
         purchaseOrder: createMenuBtn('Orden de compra', ['fa-solid', 'fa-cash-register'], function (event) {
             window.location.href = 'purchase-order.php'
