@@ -280,6 +280,7 @@ function showUsers(users) {
 }
 
 function addRow(user) {
+    usersFooterTable.innerHTML = ''
     let row = document.createElement('tr')
     row.id = `row-${user.idCard}`
     row.innerHTML = createUserDataRow(user)
