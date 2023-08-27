@@ -104,9 +104,10 @@ tbody tr:nth-child(even) {
     grid-template-columns: 18% 1fr;
 }
 
-.user-state {
+.register-state {
     padding: 5px 10px;
     border-radius: var(--border-radius);
+    color: var(--color-text);
 }
 
 .menu {
