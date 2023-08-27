@@ -16,6 +16,20 @@ const menuBtns = {
         datasheets: createMenuBtn('Hojas técnicas', ['fa-solid', 'fa-users'], function (event) {
             console.log('datasheets btn pressed')
         })
+    },
+    bodega: {
+        items: createMenuBtn('Articulos', ['fa-solid', 'fa-rectangle-list'], function (event) {
+            window.location.href = 'items.php'
+        }),
+        initialInventory: createMenuBtn('Inventario inicial', ['fa-solid', 'fa-warehouse'], function (event) {
+            
+        }),
+        purchaseOrder: createMenuBtn('Orden de compra', ['fa-solid', 'fa-cash-register'], function (event) {
+            window.location.href = 'purchase-order.php'
+        }),
+        purchaseOrders: createMenuBtn('Ordenes de compra', ['fa-solid', 'fa-receipt'], function (event) {
+            // window.location.href = 'purchase-order.php'
+        })
     }
 }
 
