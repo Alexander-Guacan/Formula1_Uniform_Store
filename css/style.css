@@ -87,14 +87,14 @@ tbody tr:nth-child(even) {
     background-color: var(--bg-color-table-row-even);
 }
 
+.control-panel {
+    display: grid;
+    grid-template-columns: 18% 1fr;
+}
+
 .user-state {
     padding: 5px 10px;
     border-radius: var(--border-radius);
-}
-
-.control-panel {
-    display: grid;
-    grid-template-columns: 16% 1fr;
 }
 
 .menu {
@@ -189,6 +189,10 @@ img.logo {
     margin-bottom: 25px;
 }
 
+.colspan-2 {
+    grid-column: span 2;
+}
+
 .popup {
     position: fixed;
     top: 20vh;
@@ -222,6 +226,15 @@ img.logo {
 .popup .form-footer > .btn {
     margin-right: 20px;
     margin-left: 20px;
+}
+
+.textarea {
+    width: 100%;
+    resize: none;
+    padding: 8px 12px;
+    height: 80px;
+    background-color: transparent;
+    color: var(--color-text);
 }
 
 .informative-msg {
@@ -286,6 +299,10 @@ img.logo {
     border: 1px solid var(--color-horizontal-line);
     background-color: transparent;
     color: var(--color-text);
+}
+
+.input-search_product {
+    width: 100%;
 }
 
 .btn {
