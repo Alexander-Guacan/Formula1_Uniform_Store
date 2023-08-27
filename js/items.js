@@ -292,7 +292,7 @@ function alternateItemState(item) {
         success: function (response) {
             item.isActive = !item.isActive
             updateRow(item)
-            registerActivity(`${user.isActive ? 'Activar' : 'Desactivar'} estado de item. Id: ${item.id}, nombre: ${item.name}`)
+            registerActivity(`${item.isActive ? 'Activar' : 'Desactivar'} estado de item. Id: ${item.id}, nombre: ${item.name}`)
         }
     })
 }
