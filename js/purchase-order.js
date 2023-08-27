@@ -39,7 +39,19 @@ btnSubmitPurchaseOrder.addEventListener('click', (event) => {
     if (!itemsInserted.length)
         return showSystemMsg(systemMsg.popup, 'wrong', 'No se han agregado items a la orden de compra')
 
+    console.log(JSON.stringify(itemsInserted))
+
+    /* $.ajax({
+        url: '../backend/purchase-order.php',
+        type: 'POST',
+        data: { add: '', items: JSON.stringify(itemsInserted) },
+        success: function (response) {
+            console.log(response)
+        }
+    }) */
+
     showSystemMsg(systemMsg.popup, 'success', 'Compra realizada exitosamente')
+    window.location.href = 'items.php'
 })
 
 let formAddItem = {
