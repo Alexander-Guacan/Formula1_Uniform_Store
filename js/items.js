@@ -163,7 +163,7 @@ function showItems(items) {
     if (!items.length)
         return itemsFooterTable.innerHTML = `
         <tr>
-            <td colspan="6">No existen items</td>
+            <td colspan="7">No existen artículos</td>
         </tr>
        `
 
@@ -291,7 +291,7 @@ function alternateItemState(item) {
         success: function (response) {
             item.isActive = !item.isActive
             updateRow(item)
-            registerActivity(`Cambiar estado de item. Id: ${item.id}, nombre: ${item.name}`)
+            registerActivity(`${user.isActive ? 'Activar' : 'Desactivar'} estado de item. Id: ${item.id}, nombre: ${item.name}`)
         }
     })
 }
