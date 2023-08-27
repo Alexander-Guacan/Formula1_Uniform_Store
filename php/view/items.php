@@ -23,6 +23,7 @@
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Medida</th>
+                <th>Estado</th>
                 <th>Acción</th>
             </tr>
         </thead>
