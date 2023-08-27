@@ -259,6 +259,17 @@ img.logo {
     text-align: center;
 }
 
+.system-msg {
+    top: 3vh;
+    left: auto;
+    right: 5vw;
+}
+
+.system-msg > .popup_btn-close {
+    top: 35%;
+    right: 3%;
+}
+
 .informative-msg--active {
     display: block;
 }
