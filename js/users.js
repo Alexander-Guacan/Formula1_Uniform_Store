@@ -119,7 +119,7 @@ formAddUser.form.addEventListener('submit', (event) => {
 
             addRow(user)
             closePopup(formAddUser.form)
-            registerActivity(`Nuevo usuario creado: ${user.idCard}`)
+            registerActivity(`Nuevo usuario creado: id: ${user.idCard}, nombre: ${user.firstName} ${user.lastName}`)
         }
     })
 })
@@ -159,7 +159,7 @@ formEditUser.form.addEventListener('submit', (event) => {
         success: function (response) {
             updateRow(user)
             closePopup(formEditUser.form)
-            registerActivity(`Actualizar informacion de usuario: ${user.idCard}`)
+            registerActivity(`Actualizar informacion de usuario. id: ${user.idCard}, nombre: ${user.firstName} ${user.lastName}`)
         }
     })
 })
@@ -240,7 +240,7 @@ function alternateUserState(user) {
         success: function (response) {
             user.isActive = !user.isActive
             updateRow(user)
-            registerActivity(`Cambiar estado de cuenta: ${user.idCard}`)
+            registerActivity(`${user.isActive ? 'Activar' : 'Desactivar'} estado de cuenta. id: ${user.idCard}, nombre: ${user.firstName} ${user.lastName}`)
         }
     })
 }
@@ -252,7 +252,7 @@ function createUserDataRow(user) {
     <td>${user.mobileNumber}</td>
     <td>${user.email}</td>
     <td>${user.rol}</td>
-    <td><span class="user-state ${user.isActive ? 'state-success' : 'state-wrong'}">${user.isActive ? 'Activo' : 'Inactivo'}</span></td>
+    <td><span class="register-state ${user.isActive ? 'state-success' : 'state-wrong'}">${user.isActive ? 'Activo' : 'Inactivo'}</span></td>
     <td>
         <a href="#" class="icon" title="Ver información" id="users-icon-view-${user.idCard}"><i class="fa-solid fa-eye text-success"></i></a>
         <a href="#" class="icon" title="Editar usuario" id="users-icon-edit-${user.idCard}"><i class="fa-solid fa-user-pen text-neutral"></i></a>
