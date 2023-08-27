@@ -1,5 +1,8 @@
 <?php
-include('./control-panel-header.php');
+    include('./control-panel-header.php');
+
+    if ($_SESSION['user']['rol'] != 'bodega')
+        header('Location: control-panel.php');
 ?>
 
 <h1>Gestión de artículos</h1>
