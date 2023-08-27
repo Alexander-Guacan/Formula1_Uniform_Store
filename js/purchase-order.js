@@ -39,19 +39,21 @@ btnSubmitPurchaseOrder.addEventListener('click', (event) => {
     if (!itemsInserted.length)
         return showSystemMsg(systemMsg.popup, 'wrong', 'No se han agregado items a la orden de compra')
 
-    console.log(JSON.stringify(itemsInserted))
+    const totalPrice = Number(document.querySelector('#purchase-order_total-price').textContent).toFixed(2)
 
-    /* $.ajax({
+    $.ajax({
         url: '../backend/purchase-order.php',
         type: 'POST',
-        data: { add: '', items: JSON.stringify(itemsInserted) },
+        data: { add: '', items: JSON.stringify(itemsInserted), totalPrice },
         success: function (response) {
-            console.log(response)
+            registerActivity(`Nueva orden de compra. No: ${response}`)
         }
-    }) */
+    })
 
     showSystemMsg(systemMsg.popup, 'success', 'Compra realizada exitosamente')
-    window.location.href = 'items.php'
+    setTimeout(() => {
+        window.location.href = 'items.php'
+    }, 3000);
 })
 
 let formAddItem = {
@@ -81,7 +83,7 @@ formAddItem.form.addEventListener('submit', (event) => {
         id: formAddItem.form.querySelector('#input-id').value,
         price: data['input-price'],
         name: formAddItem.form.querySelector('#textarea-name').innerHTML,
-        stock: data['input-stock'],
+        quantity: data['input-quantity'],
         measure: formAddItem.form.querySelector('#select-items-measure option').textContent
     }
 
@@ -106,7 +108,7 @@ inputSearch.addEventListener('keyup', (event) => {
     $.ajax({
         url: '../backend/items.php',
         type: 'GET',
-        data: { search: inputSearch.value },
+        data: { searchActives: inputSearch.value },
         success: function (response) {
             const items = JSON.parse(response)
 
@@ -149,7 +151,7 @@ formEditItem.form.addEventListener('submit', (event) => {
         id: formEditItem.form.querySelector('#input-edit-id').value,
         price: data['input-edit-price'],
         name: formEditItem.form.querySelector('#textarea-edit-name').innerHTML,
-        stock: data['input-edit-stock'],
+        quantity: data['input-edit-quantity'],
         measure: formEditItem.form.querySelector('#select-edit-items-measure option').textContent
     }
 
@@ -230,9 +232,9 @@ function createDataRow(item) {
     <td>${item.id}</td>
     <td>${item.name}</td>
     <td>${item.price}</td>
-    <td>${item.stock}</td>
+    <td>${item.quantity}</td>
     <td>${item.measure}</td>
-    <td>${item.stock * item.price}</td>
+    <td>${(item.quantity * item.price).toFixed(2)}</td>
     <td>
         <a href="#" class="icon" title="Ver información" id="items-icon-view-${item.id}"><i class="fa-solid fa-eye text-success"></i></a>
         <a href="#" class="icon" title="Editar item" id="items-icon-edit-${item.id}"><i class="fa-solid fa-pencil text-neutral"></i></a>
@@ -255,10 +257,10 @@ function updateFooter() {
     let totalPrice = 0
 
     itemsInserted.forEach(item => {
-        totalPrice += item.stock * item.price
+        totalPrice += item.quantity * item.price
     })
 
-    itemsFooterTable.querySelector('#purchase-order_total-price').textContent = totalPrice
+    itemsFooterTable.querySelector('#purchase-order_total-price').textContent = totalPrice.toFixed(2)
 }
 
 function addEventListenerToTableAction(item) {
@@ -291,7 +293,7 @@ function chargeDataOnViewForm(form, item) {
     form.querySelector('#input-view-id').setAttribute('placeholder', `${item.id}`)
     form.querySelector('#input-view-price').setAttribute('placeholder', `${item.price}`)
     form.querySelector('#textarea-view-name').setAttribute('placeholder', `${item.name}`)
-    form.querySelector('#input-view-stock').setAttribute('placeholder', `${item.stock}`)
+    form.querySelector('#input-view-quantity').setAttribute('placeholder', `${item.quantity}`)
     form.querySelector('#select-view-items-measure').innerHTML = `<option>${item.measure}</option>`
 }
 
@@ -299,7 +301,7 @@ function chargeDataOnEditForm(form, item) {
     form.querySelector('#input-edit-id').setAttribute('value', `${item.id}`)
     form.querySelector('#input-edit-price').setAttribute('value', `${item.price}`)
     form.querySelector('#textarea-edit-name').innerHTML = `${item.name}`
-    form.querySelector('#input-edit-stock').setAttribute('value', `${item.stock}`)
+    form.querySelector('#input-edit-quantity').setAttribute('value', `${item.quantity}`)
     form.querySelector('#select-edit-items-measure').innerHTML = `<option>${item.measure}</option>`
 }
 
@@ -321,5 +323,14 @@ function cleanForm(form) {
     let selects = form.querySelectorAll('select')
     selects.forEach(select => {
         select.innerHTML = ''
+    })
+}
+
+function registerActivity(description) {
+    $.ajax({
+        url: '../backend/user-operations.php',
+        type: 'POST',
+        data: { insert: '', description },
+        success: function (response) {}
     })
 }
