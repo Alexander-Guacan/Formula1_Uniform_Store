@@ -257,7 +257,6 @@ function createUserDataRow(user) {
         <a href="#" class="icon" title="Ver información" id="users-icon-view-${user.idCard}"><i class="fa-solid fa-eye text-success"></i></a>
         <a href="#" class="icon" title="Editar usuario" id="users-icon-edit-${user.idCard}"><i class="fa-solid fa-user-pen text-neutral"></i></a>
         <a href="#" class="icon" title="${user.isActive ? 'Desactivar cuenta' : 'Activar cuenta'}" id="users-icon-state-${user.idCard}"><i class="fa-solid ${user.isActive ? 'fa-toggle-on text-success' : 'fa-toggle-off text-wrong'} "></i></a>
-        <a href="#" class="icon" title="Eliminar usuario" id="users-icon-delete-${user.idCard}"><i class="fa-solid fa-user-xmark text-wrong"></i></a>
     </td>
     `
     return dataRow
@@ -288,16 +287,6 @@ function addRow(user) {
     addEventListenerToTableAction(user)
 }
 
-function removeRow(row) {
-    usersBodyTable.removeChild(row)
-    if (!usersBodyTable.hasChildNodes())
-        usersFooterTable.innerHTML = `
-        <tr>
-            <td colspan="7">No existen usuarios</td>
-        </tr>
-       `
-}
-
 function addEventListenerToTableAction(user) {
     let row = usersBodyTable.querySelector(`#row-${user.idCard}`)
     row.querySelector(`#users-icon-view-${user.idCard}`).addEventListener('click', (event) => {
@@ -312,17 +301,5 @@ function addEventListenerToTableAction(user) {
     row.querySelector(`#users-icon-edit-${user.idCard}`).addEventListener('click', (event) => {
         openPopup(formEditUser.form)
         chargeDataOnForm(formEditUser.form, user)
-    })
-
-    row.querySelector(`#users-icon-delete-${user.idCard}`).addEventListener('click', (event) => {
-        $.ajax({
-            url: '../backend/users.php',
-            type: 'POST',
-            data: { delete: '', user: user.idCard },
-            success: function (response) {
-                removeRow(row)
-                registerActivity(`Eliminar cuenta: ${user.idCard}`)
-            }
-        })
     })
 }

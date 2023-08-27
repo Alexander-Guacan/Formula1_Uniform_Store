@@ -54,14 +54,6 @@
         $connection->query($queryUser);
     }
 
-    if (isset($_POST['delete'])) {
-        $query = "DELETE
-        FROM Users
-        WHERE idCard = '{$_POST['user']}'";
-
-        $connection->query($query);
-    }
-
     if (isset($_GET['add'])) {
         $user = json_decode($_GET['user'], true);
 
