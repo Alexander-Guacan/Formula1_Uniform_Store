@@ -141,6 +141,11 @@ include('./control-panel-header.php');
     </fieldset>
 </form>
 
+<aside class="popup system-msg">
+    <div id="system-msg"></div>
+    <a class="icon popup_btn-close" href="#"><i class="fa-solid fa-xmark"></i></a>
+</aside>
+
 <script type="module" src="../../js/purchase-order.js"></script>
 
 <?php
