@@ -87,6 +87,18 @@ tbody tr:nth-child(even) {
     background-color: var(--bg-color-table-row-even);
 }
 
+.table-body tr:last-child td:first-child {
+    border-bottom-left-radius: 0;
+}
+
+.table-body tr:last-child td:last-child {
+    border-bottom-right-radius: 0;
+}
+
+.table-footer td {
+    background-color: var(--bg-color-table-head);
+}
+
 .control-panel {
     display: grid;
     grid-template-columns: 18% 1fr;
