@@ -4,7 +4,7 @@
 
     if (isset($_GET['read'])) {
         $idPurchaseOrder = $_GET['idPurchaseOrder'];
-        $query = "SELECT Items.idItem, Items.name AS name, Items.price, PurchaseOrdersDetails.quantityItemPurchased, Measures.name AS measure
+        $query = "SELECT Items.idItem, Items.name AS name, PurchaseOrdersDetails.itemPrice as price, PurchaseOrdersDetails.quantityItemPurchased, Measures.name AS measure
         FROM PurchaseOrdersDetails
         JOIN Items
         ON Items.idItem = PurchaseOrdersDetails.idItem
