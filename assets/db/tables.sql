@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     27/08/2023 13:09:56                          */
+/* Created on:     27/08/2023 19:09:42                          */
 /*==============================================================*/
 
 
@@ -65,6 +65,7 @@ create table PurchaseOrders
    idPurchaseOrder      bigint not null auto_increment,
    idCard               char(10) not null,
    totalPrice           float(8,2) not null,
+   date                 timestamp not null,
    primary key (idPurchaseOrder)
 );
 
