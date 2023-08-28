@@ -28,7 +28,7 @@ const menuBtns = {
             window.location.href = 'purchase-order.php'
         }),
         purchaseOrders: createMenuBtn('Ordenes de compra', ['fa-solid', 'fa-receipt'], function (event) {
-            // window.location.href = 'purchase-order.php'
+            window.location.href = 'purchase-orders.php'
         })
     }
 }
