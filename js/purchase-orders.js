@@ -25,7 +25,7 @@ function showPurchaseOrders(purchaseOrders) {
     if (!purchaseOrders.length)
         return purchaseOrdersFooterTable.innerHTML = `
         <tr>
-            <td colspan="4">No existen ordenes de compra</td>
+            <td colspan="5">No existen ordenes de compra</td>
         </tr>
        `
 
@@ -53,6 +53,7 @@ function createDataRow(purchaseOrder) {
     let dataRow = `
     <td>${purchaseOrder.id}</td>
     <td>${purchaseOrder.idCard}</td>
+    <td>${purchaseOrder.firstName} ${purchaseOrder.lastName}</td>
     <td>${purchaseOrder.date}</td>
     <td>
         <a href="#" class="icon" title="Ver detalles" id="purchase-orders-icon-view-${purchaseOrder.id}"><i class="fa-solid fa-eye text-success"></i></a>

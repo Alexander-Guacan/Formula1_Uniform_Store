@@ -12,6 +12,7 @@ if ($_SESSION['user']['rol'] != 'bodega')
             <tr>
                 <th>Id</th>
                 <th>Cédula del responsable</th>
+                <th>Nombre del responsable</th>
                 <th>Fecha</th>
                 <th>Acción</th>
             </tr>
