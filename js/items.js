@@ -138,12 +138,16 @@ formEditItem.form.addEventListener('submit', (event) => {
         type: 'POST',
         data: { update: '', item: JSON.stringify(item) },
         success: function (response) {
-            if (response['itemExist'])
-                return showErrorMsgOnForm(formAddItem.form, 'El nombre del producto ya existe')
-            
+            const json = JSON.parse(response)
+            if (!json['hasChange'])
+                return closePopup(formEditItem.form)
+
+            if (json['itemExist'])
+                return showErrorMsgOnForm(formEditItem.form, 'El nombre del producto ya existe')
+
             updateRow(item)
-            closePopup(formEditItem.form)
             registerActivity(`Actualizar informacion de item. Id: ${item.id}, nombre: ${item.name}`)
+            closePopup(formEditItem.form)
         }
     })
 })

@@ -84,29 +84,35 @@
     if (isset($_POST['update'])) {
         $item = json_decode($_POST['item'], true);
 
-        $queryItemExist = "SELECT * FROM Items
-        WHERE name = '{$item['name']}'";
+        $queryMeasure = "SELECT idMeasure
+        FROM Measures
+        WHERE name = '{$item['measure']}'";
 
+        $idMeasure = $connection->query($queryMeasure)->fetch_array()['idMeasure'];
+        
+        $queryCompareChanges = "SELECT * FROM Items
+        WHERE idItem = '{$item['id']}' AND name = '{$item['name']}' AND idMeasure = $idMeasure";
+
+        $hasChange = $connection->query($queryCompareChanges)->num_rows == 0;
+
+        $queryItemExist = "SELECT * FROM Items
+        WHERE name = '{$item['name']}' AND idItem != '{$item['id']}'";
 
         $itemExist = $connection->query($queryItemExist)->num_rows > 0;
 
         $response = array(
-            'itemExist' => $itemExist == 1
+            'itemExist' => $itemExist,
+            'hasChange' => $hasChange
         );
 
-        if ($itemExist) {
+        if ($itemExist || !$hasChange) {
             echo json_encode($response);
             return;
         }
 
-        $queryMeasure = "SELECT idMeasure
-        FROM Measures
-        WHERE name = '{$item['measure']}'";
-        $idMeasure = $connection->query($queryMeasure)->fetch_array()['idMeasure'];
-
-        $queryUpdateItem = "UPDATE Items SET
-        idMeasure = '$idMeasure', name = '{$item['name']}', price = '{$item['price']}', stock = '{$item['stock']}'
-        WHERE idItem = '{$item['id']}'";
+        $queryUpdateItem = "UPDATE Items
+        SET idMeasure = $idMeasure, name = '{$item['name']}'
+        WHERE idItem = {$item['id']}";
 
         $connection->query($queryUpdateItem);
 
