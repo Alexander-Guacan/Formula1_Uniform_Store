@@ -13,6 +13,7 @@
                 <th>Id</th>
                 <th>Descripción</th>
                 <th>Cédula del responsable</th>
+                <th>Nombre del responsable</th>
                 <th>Fecha</th>
             </tr>
         </thead>
