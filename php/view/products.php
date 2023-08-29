@@ -12,8 +12,8 @@ if ($_SESSION['user']['rol'] != 'ventas')
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>Estado</th>
                 <th>Talla</th>
+                <th>Estado</th>
                 <th>Acción</th>
             </tr>
         </thead>
@@ -36,32 +36,7 @@ if ($_SESSION['user']['rol'] != 'ventas')
                 <th>Total</th>
             </tr>
         </thead>
-        <tbody class="table-body" id="items-table-body">
-            <tr>
-                <td>Id artículo</td>
-                <td>Nombre</td>
-                <td>Precio</td>
-                <td>Cantidad</td>
-                <td>Medida</td>
-                <td>10</td>
-            </tr>
-            <tr>
-                <td>Id artículo</td>
-                <td>Nombre</td>
-                <td>Precio</td>
-                <td>Cantidad</td>
-                <td>Medida</td>
-                <td>10</td>
-            </tr>
-            <tr>
-                <td>Id artículo</td>
-                <td>Nombre</td>
-                <td>Precio</td>
-                <td>Cantidad</td>
-                <td>Medida</td>
-                <td>10</td>
-            </tr>
-        </tbody>
+        <tbody class="table-body" id="items-table-body"></tbody>
         <thead class="thead-middle">
             <tr>
                 <th>Id mano de obra</th>
@@ -71,29 +46,7 @@ if ($_SESSION['user']['rol'] != 'ventas')
                 <th>Total</th>
             </tr>
         </thead>
-        <tbody class="table-body" id="labors-table-body">
-            <tr>
-                <td>Id mano de obra</td>
-                <td>Descripción</td>
-                <td>Sueldo/Hora</td>
-                <td colspan="2">Horas</td>
-                <td>10</td>
-            </tr>
-            <tr>
-                <td>Id mano de obra</td>
-                <td>Descripción</td>
-                <td>Sueldo/Hora</td>
-                <td colspan="2">Horas</td>
-                <td>10</td>
-            </tr>
-            <tr>
-                <td>Id mano de obra</td>
-                <td>Descripción</td>
-                <td>Sueldo/Hora</td>
-                <td colspan="2">Horas</td>
-                <td>10</td>
-            </tr>
-        </tbody>
+        <tbody class="table-body" id="labors-table-body"></tbody>
         <tfoot class="table-footer" id="products-table-footer">
             <tr>
                 <td colspan="4"></td>
