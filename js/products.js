@@ -56,6 +56,11 @@ function addRowDatasheetLabor(labor) {
     datasheetTable.table.querySelector('#labors-table-body').appendChild(row)
 }
 
+function updateRow(product) {
+    document.querySelector(`#row-${product.id}`).innerHTML = createDataRow(product)
+    addEventListenerToTableAction(product)
+}
+
 function createDataRow(product) {
     let dataRow = `
     <td>${product.id}</td>
@@ -94,6 +99,19 @@ function createRowDatasheetLabor(labor) {
     return dataRow
 }
 
+function alternateProductState(product) {
+    $.ajax({
+        url: '../backend/products.php',
+        type: 'POST',
+        data: { updateState: '', idProduct: product.id, isActive: product.isActive },
+        success: function (response) {
+            product.isActive = !product.isActive
+            updateRow(product)
+            registerActivity(`${product.isActive ? 'Activar' : 'Desactivar'} estado de producto. Id: ${product.id}, nombre: ${product.name}`)
+        }
+    })
+}
+
 function addEventListenerToTableAction(product) {
     let row = productsBodyTable.querySelector(`#row-${product.id}`)
 
@@ -103,7 +121,7 @@ function addEventListenerToTableAction(product) {
     })
 
     row.querySelector(`#products-icon-state-${product.id}`).addEventListener('click', (event) => {
-        // alternateUserState(product)
+        alternateProductState(product)
     })
 
     row.querySelector(`#products-icon-edit-${product.id}`).addEventListener('click', (event) => {
@@ -158,4 +176,13 @@ function openPopup(form) {
 
 function closePopup(form) {
     form.classList.remove('popup--open')
+}
+
+function registerActivity(description) {
+    $.ajax({
+        url: '../backend/user-operations.php',
+        type: 'POST',
+        data: { insert: '', description },
+        success: function (response) {}
+    })
 }
