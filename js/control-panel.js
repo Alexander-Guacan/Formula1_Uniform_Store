@@ -30,6 +30,14 @@ const menuBtns = {
         purchaseOrders: createMenuBtn('Ordenes de compra', ['fa-solid', 'fa-receipt'], function (event) {
             window.location.href = 'purchase-orders.php'
         })
+    },
+    recursos_humanos: {
+        labors: createMenuBtn('Mano de obra', ['fa-solid', 'fa-receipt'], function (event) {
+            window.location.href = 'labors.php'
+        }),
+        clients: createMenuBtn('Clientes', ['fa-solid', 'fa-receipt'], function (event) {
+            
+        })
     }
 }
 
