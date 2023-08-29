@@ -9,14 +9,34 @@ $.ajax({
     }
 })
 
-$.ajax({
-    url: '../backend/products.php',
-    type: 'GET',
-    data: { read: '' },
-    success: function (response) {
-        const products = JSON.parse(response)
-        showproducts(products)
-    }
+function showAllProducts() {
+    $.ajax({
+        url: '../backend/products.php',
+        type: 'GET',
+        data: { read: '' },
+        success: function (response) {
+            const products = JSON.parse(response)
+            showProducts(products)
+        }
+    })
+}
+
+showAllProducts()
+
+let inputSearch = document.querySelector('#search-products')
+
+inputSearch.addEventListener('keyup', (event) => {
+    if (inputSearch.value == '')
+        showAllProducts()
+
+    $.ajax({
+        url: '../backend/products.php',
+        type: 'GET',
+        data: { search: inputSearch.value },
+        success: function (response) {
+            showProducts(JSON.parse(response))
+        }
+    })
 })
 
 let productsBodyTable = document.querySelector('#products-table-body')
@@ -79,7 +99,10 @@ formEditProduct.form.addEventListener('submit', (event) => {
     })
 })
 
-function showproducts(products) {
+function showProducts(products) {
+    productsBodyTable.innerHTML = ''
+    productsFooterTable.innerHTML = ''
+
     if (!products.length)
         return productsFooterTable.innerHTML = `
         <tr>
