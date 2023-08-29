@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     28/08/2023 22:38:20                          */
+/* Created on:     29/08/2023 3:42:59                           */
 /*==============================================================*/
 
 
@@ -89,6 +89,7 @@ create table Labors
    idLabor              bigint not null auto_increment,
    description          char(250) not null,
    hourlyRate           float(3,2) not null,
+   isActive             bool not null default true,
    primary key (idLabor)
 );
 
