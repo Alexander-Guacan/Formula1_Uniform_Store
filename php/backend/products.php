@@ -6,7 +6,7 @@
         $query = "SELECT Products.idProduct, Products.name,
         Products.isActive, Sizes.name as size
         FROM Products JOIN Sizes
-        ON Sizes.idSize = Sizes.idSize";
+        ON Sizes.idSize = Products.idSize";
 
         $response = $connection->query($query);
 

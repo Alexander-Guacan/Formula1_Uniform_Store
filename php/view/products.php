@@ -22,7 +22,7 @@ if ($_SESSION['user']['rol'] != 'ventas')
     </table>
 </section>
 
-<div class="table-popup popup--open popup-extended">
+<div class="table-popup popup-extended">
     <a class="icon popup_btn-close" href="#"><i class="fa-solid fa-xmark"></i></a>
     <table>
         <caption class="table-title">Hoja tecnica producto #<span id="id-product"></span></caption>
@@ -50,7 +50,7 @@ if ($_SESSION['user']['rol'] != 'ventas')
         <tfoot class="table-footer" id="products-table-footer">
             <tr>
                 <td colspan="4"></td>
-                <td>Total</td>
+                <td>Precio del producto</td>
                 <td id="product_total-price">0</td>
             </tr>
         </tfoot>

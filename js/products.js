@@ -9,6 +9,8 @@ let datasheetTable = {
 datasheetTable.btnClose.addEventListener('click', (event) => {
     closePopup(datasheetTable.table)
     datasheetTable.table.querySelector('#items-table-body').innerHTML = ''
+    datasheetTable.table.querySelector('#labors-table-body').innerHTML = ''
+    totalPriceDatasheet.textContent = 0
 })
 
 $.ajax({
@@ -83,7 +85,7 @@ function createRowDatasheetItem(item) {
 
 function createRowDatasheetLabor(labor) {
     let dataRow = `
-    <td>${labor.idlabor}</td>
+    <td>${labor.idLabor}</td>
     <td>${labor.description}</td>
     <td>${labor.hourlyRate}</td>
     <td colspan="2">${labor.workHours}</td>
@@ -101,31 +103,32 @@ function addEventListenerToTableAction(product) {
     })
 
     row.querySelector(`#products-icon-state-${product.id}`).addEventListener('click', (event) => {
-        alternateUserState(product)
+        // alternateUserState(product)
     })
 
     row.querySelector(`#products-icon-edit-${product.id}`).addEventListener('click', (event) => {
-        openPopup(formEditUser.form)
-        chargeDataOnForm(formEditUser.form, product)
+        // openPopup(formEditUser.form)
+        // chargeDataOnForm(formEditUser.form, product)
     })
 }
+
+let totalPriceDatasheet = datasheetTable.table.querySelector('#product_total-price')
 
 function showDatasheet(idProduct) {
     datasheetTable.title.textContent = idProduct
 
-    let totalPrice = 0
-
     $.ajax({
         url: '../backend/datasheets.php',
         type: 'GET',
-        data: { readItem: '', idProduct },
+        data: { readItems: '', idProduct },
         success: function (response) {
 
             const items = JSON.parse(response)
             
             items.forEach(item => {
                 addRowDatasheetItem(item)
-                totalPrice += item.price * item.quantity
+                let currentPrice = Number(totalPriceDatasheet.textContent)
+                totalPriceDatasheet.textContent = (currentPrice + item.price * item.quantity).toFixed(2)
             })
         }
     })
@@ -133,22 +136,20 @@ function showDatasheet(idProduct) {
     $.ajax({
         url: '../backend/datasheets.php',
         type: 'GET',
-        data: { readLabor: '', idProduct },
+        data: { readLabors: '', idProduct },
         success: function (response) {
 
             const labors = JSON.parse(response)
-            
-            let totalPrice = 0
 
             labors.forEach(labor => {
                 addRowDatasheetLabor(labor)
-                totalPrice += labor.hourlyRate * labor.workHours
+                let currentPrice = Number(totalPriceDatasheet.textContent)
+                totalPriceDatasheet.textContent = (currentPrice + labor.hourlyRate * labor.workHours).toFixed(2)
             })
 
         }
     })
-    
-    datasheetTable.table.querySelector('#product_total-price').textContent = totalPrice.toFixed(2)
+
 }
 
 function openPopup(form) {
