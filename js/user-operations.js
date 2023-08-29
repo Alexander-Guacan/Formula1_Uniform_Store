@@ -16,7 +16,7 @@ function showOperations() {
     if (!userOperations.length)
         return userOperationsFooterTable.innerHTML = `
         <tr>
-            <td colspan="4">No existen actividades</td>
+            <td colspan="5">No existen actividades</td>
         </tr>
        `
 
