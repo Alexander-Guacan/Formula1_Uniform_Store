@@ -32,4 +32,41 @@
         $result = $connection->query($query);
     }
 
+    if (isset($_POST['update'])) {
+        $product = json_decode($_POST['product'], true);
+
+        $querySize = "SELECT idSize
+        FROM Sizes
+        WHERE name = '{$product['size']}'";
+
+        $idSize = $connection->query($querySize)->fetch_array()['idSize'];
+        
+        $queryCompareChanges = "SELECT * FROM Products
+        WHERE idProduct = '{$product['id']}' AND name = '{$product['name']}' AND idSize = $idSize";
+
+        $hasChange = $connection->query($queryCompareChanges)->num_rows == 0;
+
+        $queryProductExist = "SELECT * FROM Products
+        WHERE name = '{$product['name']}' AND idProduct != '{$product['id']}'";
+
+        $productExist = $connection->query($queryProductExist)->num_rows > 0;
+
+        $response = array(
+            'productExist' => $productExist,
+            'hasChange' => $hasChange
+        );
+
+        if ($productExist || !$hasChange) {
+            echo json_encode($response);
+            return;
+        }
+
+        $queryUpdateProduct = "UPDATE Products
+        SET idSize = $idSize, name = '{$product['name']}'
+        WHERE idProduct = {$product['id']}";
+
+        $connection->query($queryUpdateProduct);
+
+        echo json_encode($response);
+    }
 ?>
