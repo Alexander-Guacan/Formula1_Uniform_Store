@@ -75,6 +75,7 @@ formAddItem.form.addEventListener('submit', (event) => {
         name: data['textarea-name'],
         stock: data['input-stock'],
         measure: data['select-items-measure'],
+        totalPrice: data['input-price'] * data['input-stock'],
         isActive: true
     }
 
