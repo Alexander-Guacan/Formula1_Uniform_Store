@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     29/08/2023 3:42:59                           */
+/* Created on:     29/08/2023 15:45:33                          */
 /*==============================================================*/
 
 
@@ -50,7 +50,7 @@ create table DatasheetsLabors
    idDatasheetLabor     bigint not null auto_increment,
    idProduct            bigint not null,
    idLabor              bigint not null,
-   workHours            real,
+   workHours            real not null,
    primary key (idDatasheetLabor)
 );
 
