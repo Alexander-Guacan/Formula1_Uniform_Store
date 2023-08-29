@@ -7,6 +7,11 @@ if ($_SESSION['user']['rol'] != 'ventas')
 
 <h1>Productos</h1>
 <section>
+    <article class="table-actions">
+        <div class="table-actions_left">
+            <input type="search" id="search-products" placeholder="Buscar producto por nombre" class="input-search">
+        </div>
+    </article>
     <table>
         <thead>
             <tr>
