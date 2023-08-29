@@ -9,7 +9,7 @@
 <section>
     <article class="table-actions">
         <div class="table-actions_left">
-            <input type="search" id="search-items" placeholder="Buscar artículo por descripción" class="input-search">
+            <input type="search" id="search-items" placeholder="Buscar artículo por nombre" class="input-search">
         </div>
         <div class="table-actions_right">
             <button type="button" class="btn" id="btn-add-new-item"><i class="fa-solid fa-plus"></i>&emsp;Agregar nuevo artículo</button>
