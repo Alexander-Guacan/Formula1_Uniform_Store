@@ -2,6 +2,8 @@
     include_once('./connection.php');
 
     if (isset($_POST['add'])) {
+        session_start();
+        
         $item = json_decode($_POST['item'], true);
 
         $queryExistences = "SELECT *
@@ -30,6 +32,21 @@
         $queryAddInitialItem = "INSERT INTO InitialItems(idInitialItem, idMeasure, name, price, stock)
         VALUES ({$item['id']} ,$idMeasure, '{$item['name']}', '{$item['price']}', '{$item['stock']}')";
         $connection->query($queryAddInitialItem);
+
+        $queryNewPurchaseOrder = "INSERT INTO PurchaseOrders (idCard, totalPrice)
+        VALUES ({$_SESSION['user']['idCard']}, {$item['totalPrice']})";
+
+        $connection->query($queryNewPurchaseOrder);
+
+        $queryPurchaseOrderInserted = "SELECT idPurchaseOrder FROM PurchaseOrders
+        ORDER BY idPurchaseOrder DESC LIMIT 1";
+
+        $idPurchaseOrder = $connection->query($queryPurchaseOrderInserted)->fetch_array()['idPurchaseOrder'];
+
+        $queryNewPurchaseOrderDetail = "INSERT INTO PurchaseOrdersDetails (idPurchaseOrder, idItem, itemPrice, quantityItemPurchased)
+        VALUES ($idPurchaseOrder, {$item['id']}, {$item['price']}, {$item['stock']})";
+
+        $connection->query($queryNewPurchaseOrderDetail);
 
         echo json_encode($response);
     }
