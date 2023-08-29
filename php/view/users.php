@@ -64,11 +64,7 @@
         </div>
         <div class="form-group">
             <label for="select-user-rol" class="label">Rol</label>
-            <select name="select-user-rol" id="select-user-rol" class="select">
-                <option value="admin" class="option">admin</option>
-                <option value="ventas" class="option">ventas</option>
-                <option value="bodega" class="option">bodega</option>
-            </select>
+            <select name="select-user-rol" id="select-user-rol" class="select"></select>
         </div>
         <div class="form-group">
             <label for="input-password" class="label">Contraseña</label>
@@ -117,11 +113,7 @@
         </div>
         <div class="form-group">
             <label for="select-edit-user-rol" class="label">Rol</label>
-            <select name="select-edit-user-rol" id="select-edit-user-rol" class="select">
-                <!-- <option value="admin" class="option">admin</option>
-                <option value="ventas" class="option">ventas</option>
-                <option value="bodega" class="option">bodega</option> -->
-            </select>
+            <select name="select-edit-user-rol" id="select-edit-user-rol" class="select"></select>
         </div>
         <div class="form-group">
             <label for="input-edit-state" class="label">Estado</label>
@@ -170,8 +162,7 @@
         </div>
         <div class="form-group">
             <label for="select-view-user-rol" class="label">Rol</label>
-            <select name="select-view-user-rol" id="select-view-user-rol" class="select" disabled>
-            </select>
+            <select name="select-view-user-rol" id="select-view-user-rol" class="select" disabled></select>
         </div>
     </fieldset>
 </form>
