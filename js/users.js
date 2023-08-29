@@ -252,7 +252,7 @@ function createUserDataRow(user) {
     <td>${user.firstName} ${user.lastName}</td>
     <td>${user.mobileNumber}</td>
     <td>${user.email}</td>
-    <td>${user.rol.replace('-',' ')}</td>
+    <td>${user.rol.replace('_',' ')}</td>
     <td><span class="register-state ${user.isActive ? 'state-success' : 'state-wrong'}">${user.isActive ? 'Activo' : 'Inactivo'}</span></td>
     <td>
         <a href="#" class="icon" title="Ver información" id="users-icon-view-${user.idCard}"><i class="fa-solid fa-eye text-success"></i></a>
