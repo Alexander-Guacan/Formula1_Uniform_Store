@@ -60,6 +60,7 @@ inputSearch.addEventListener('keyup', (event) => {
 
 btnAddUser.addEventListener('click', (event) => {
     openPopup(formAddUser.form)
+    chargeSelectRol(formAddUser.form.querySelector('#select-user-rol'), '')
 })
 
 formAddUser.btnClose.addEventListener('click', (event) => {
@@ -211,7 +212,7 @@ function chargeSelectRol(selectObject, rolSelectDefault) {
         let option = document.createElement('option')
         option.setAttribute('value', rol.name)
         option.setAttribute('class', 'option')
-        option.textContent = rol.name
+        option.textContent = rol.name.replace('_',' ')
 
         if (rol.name == rolSelectDefault)
             option.setAttribute('selected', '')
@@ -251,7 +252,7 @@ function createUserDataRow(user) {
     <td>${user.firstName} ${user.lastName}</td>
     <td>${user.mobileNumber}</td>
     <td>${user.email}</td>
-    <td>${user.rol}</td>
+    <td>${user.rol.replace('-',' ')}</td>
     <td><span class="register-state ${user.isActive ? 'state-success' : 'state-wrong'}">${user.isActive ? 'Activo' : 'Inactivo'}</span></td>
     <td>
         <a href="#" class="icon" title="Ver información" id="users-icon-view-${user.idCard}"><i class="fa-solid fa-eye text-success"></i></a>
