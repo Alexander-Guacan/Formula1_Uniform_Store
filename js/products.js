@@ -1,3 +1,24 @@
+let sizes = ''
+
+$.ajax({
+    url: '../backend/sizes.php',
+    type: 'GET',
+    data: { read: '' },
+    success: function (response) {
+        sizes = JSON.parse(response)
+    }
+})
+
+$.ajax({
+    url: '../backend/products.php',
+    type: 'GET',
+    data: { read: '' },
+    success: function (response) {
+        const products = JSON.parse(response)
+        showproducts(products)
+    }
+})
+
 let productsBodyTable = document.querySelector('#products-table-body')
 let productsFooterTable = document.querySelector('#products-table-footer')
 let datasheetTable = {
@@ -13,14 +34,49 @@ datasheetTable.btnClose.addEventListener('click', (event) => {
     totalPriceDatasheet.textContent = 0
 })
 
-$.ajax({
-    url: '../backend/products.php',
-    type: 'GET',
-    data: { read: '' },
-    success: function (response) {
-        const products = JSON.parse(response)
-        showproducts(products)
+let formEditProduct = {
+    form: document.querySelector('#form-edit-product'),
+    btnClose: document.querySelector('#form-edit-product .popup_btn-close'),
+    btnSubmit: document.querySelector('#form-edit-product .form-footer button')
+}
+
+formEditProduct.btnClose.addEventListener('click', (event) => {
+    closePopup(formEditProduct.form)
+})
+
+formEditProduct.form.addEventListener('submit', (event) => {
+    event.preventDefault()
+    closePopup(formEditProduct.form)
+
+    const data = Object.fromEntries(new FormData(event.target))
+
+    if (incompleteForm(data))
+        return showErrorMsgOnForm(formEditProduct.form, 'Formulario incompleto')
+
+    let product = {
+        id: formEditProduct.form.querySelector('#input-edit-id').value,
+        name: data['textarea-edit-name'],
+        size: data['select-edit-products-size'],
+        isActive: productsBodyTable.querySelector(`#row-${formEditProduct.form.querySelector('#input-edit-id').value} .register-state`).textContent == 'Activo'
     }
+
+    $.ajax({
+        url: '../backend/products.php',
+        type: 'POST',
+        data: { update: '', product: JSON.stringify(product) },
+        success: function (response) {
+            const json = JSON.parse(response)
+            if (!json['hasChange'])
+                return closePopup(formEditProduct.form)
+
+            if (json['productExist'])
+                return showErrorMsgOnForm(formEditProduct.form, 'El nombre del producto ya existe')
+
+            updateRow(product)
+            registerActivity(`Actualizar informacion de producto. Id: ${product.id}, nombre: ${product.name}`)
+            closePopup(formEditProduct.form)
+        }
+    })
 })
 
 function showproducts(products) {
@@ -99,6 +155,28 @@ function createRowDatasheetLabor(labor) {
     return dataRow
 }
 
+function incompleteForm(data) {
+    for (let input in data) {
+        if (!data[input])
+            return true
+    }
+
+    return false
+}
+
+function showErrorMsgOnForm(form, msg) {
+    let errorMessage = form.querySelector('.informative-msg')
+    errorMessage.classList.add('state-wrong')
+    errorMessage.classList.add('informative-msg--active')
+    errorMessage.textContent = msg
+
+    setTimeout(() => {
+        errorMessage.classList.remove('state-wrong')
+        errorMessage.classList.remove('informative-msg--active')
+        errorMessage.textContent = ''
+    }, 5000);
+}
+
 function alternateProductState(product) {
     $.ajax({
         url: '../backend/products.php',
@@ -125,9 +203,31 @@ function addEventListenerToTableAction(product) {
     })
 
     row.querySelector(`#products-icon-edit-${product.id}`).addEventListener('click', (event) => {
-        // openPopup(formEditUser.form)
-        // chargeDataOnForm(formEditUser.form, product)
+        openPopup(formEditProduct.form)
+        chargeDataOnEditForm(formEditProduct.form, product)
     })
+}
+
+function chargeDataOnEditForm(form, product) {
+    form.querySelector('#input-edit-id').setAttribute('value', `${product.id}`)
+    form.querySelector('#textarea-edit-name').innerHTML = `${product.name}`
+
+    chargeSelect(form.querySelector('#select-edit-products-size'), sizes, product.size)
+}
+
+function chargeSelect(selectObject, options, sizeSelectDefault) {
+    selectObject.innerHTML = ''
+    options.forEach(option => {
+        let optionHTML = document.createElement('option')
+        optionHTML.setAttribute('value', option.name)
+        optionHTML.setAttribute('class', 'option')
+        optionHTML.textContent = option.name
+
+        if (option.name == sizeSelectDefault)
+            optionHTML.setAttribute('selected', '')
+
+        selectObject.appendChild(optionHTML)
+    });
 }
 
 let totalPriceDatasheet = datasheetTable.table.querySelector('#product_total-price')
