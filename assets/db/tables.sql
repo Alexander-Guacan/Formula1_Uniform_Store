@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     28/08/2023 18:58:03                          */
+/* Created on:     28/08/2023 22:38:20                          */
 /*==============================================================*/
 
 
@@ -47,7 +47,7 @@ create table DatasheetsItems
 /*==============================================================*/
 create table DatasheetsLabors
 (
-   idDatasheetLabor     bigint not null,
+   idDatasheetLabor     bigint not null auto_increment,
    idProduct            bigint not null,
    idLabor              bigint not null,
    workHours            real,
@@ -86,7 +86,7 @@ create table Items
 /*==============================================================*/
 create table Labors
 (
-   idLabor              bigint not null,
+   idLabor              bigint not null auto_increment,
    description          char(250) not null,
    hourlyRate           float(3,2) not null,
    primary key (idLabor)
@@ -107,7 +107,7 @@ create table Measures
 /*==============================================================*/
 create table Products
 (
-   idProduct            bigint not null,
+   idProduct            bigint not null auto_increment,
    idSize               smallint not null,
    name                 char(30) not null,
    isActive             bool not null default true,
@@ -144,7 +144,7 @@ create table PurchaseOrdersDetails
 /*==============================================================*/
 create table Sizes
 (
-   idSize               smallint not null,
+   idSize               smallint not null auto_increment,
    name                 char(30) not null,
    primary key (idSize)
 );
