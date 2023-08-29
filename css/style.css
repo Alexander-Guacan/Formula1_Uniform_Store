@@ -238,7 +238,7 @@ img.logo {
 .table-popup {
     position: fixed;
     top: 20vh;
-    left: 30vw;
+    left: 28vw;
     display: none;
     max-height: 70vh;
     overflow: scroll;
