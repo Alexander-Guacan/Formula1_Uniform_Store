@@ -1,24 +1,58 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     27/08/2023 19:09:42                          */
+/* Created on:     28/08/2023 18:58:03                          */
 /*==============================================================*/
 
+
+drop table if exists DatasheetsItems;
+
+drop table if exists DatasheetsLabors;
 
 drop table if exists InitialItems;
 
 drop table if exists Items;
 
+drop table if exists Labors;
+
 drop table if exists Measures;
+
+drop table if exists Products;
 
 drop table if exists PurchaseOrders;
 
 drop table if exists PurchaseOrdersDetails;
+
+drop table if exists Sizes;
 
 drop table if exists UserOperations;
 
 drop table if exists UserRoles;
 
 drop table if exists Users;
+
+/*==============================================================*/
+/* Table: DatasheetsItems                                       */
+/*==============================================================*/
+create table DatasheetsItems
+(
+   idDatasheetItem      bigint not null auto_increment,
+   idProduct            bigint not null,
+   idItem               bigint not null,
+   itemQuantity         int not null,
+   primary key (idDatasheetItem)
+);
+
+/*==============================================================*/
+/* Table: DatasheetsLabors                                      */
+/*==============================================================*/
+create table DatasheetsLabors
+(
+   idDatasheetLabor     bigint not null,
+   idProduct            bigint not null,
+   idLabor              bigint not null,
+   workHours            real,
+   primary key (idDatasheetLabor)
+);
 
 /*==============================================================*/
 /* Table: InitialItems                                          */
@@ -48,6 +82,17 @@ create table Items
 );
 
 /*==============================================================*/
+/* Table: Labors                                                */
+/*==============================================================*/
+create table Labors
+(
+   idLabor              bigint not null,
+   description          char(250) not null,
+   hourlyRate           float(3,2) not null,
+   primary key (idLabor)
+);
+
+/*==============================================================*/
 /* Table: Measures                                              */
 /*==============================================================*/
 create table Measures
@@ -55,6 +100,18 @@ create table Measures
    idMeasure            smallint not null auto_increment,
    name                 char(30) not null,
    primary key (idMeasure)
+);
+
+/*==============================================================*/
+/* Table: Products                                              */
+/*==============================================================*/
+create table Products
+(
+   idProduct            bigint not null,
+   idSize               smallint not null,
+   name                 char(30) not null,
+   isActive             bool not null default true,
+   primary key (idProduct)
 );
 
 /*==============================================================*/
@@ -80,6 +137,16 @@ create table PurchaseOrdersDetails
    itemPrice            float(3,2) not null,
    quantityItemPurchased int not null,
    primary key (idPurchaseOrderDetail)
+);
+
+/*==============================================================*/
+/* Table: Sizes                                                 */
+/*==============================================================*/
+create table Sizes
+(
+   idSize               smallint not null,
+   name                 char(30) not null,
+   primary key (idSize)
 );
 
 /*==============================================================*/
@@ -121,11 +188,26 @@ create table Users
    primary key (idCard)
 );
 
+alter table DatasheetsItems add constraint FK_componer foreign key (idProduct)
+      references Products (idProduct) on delete restrict on update restrict;
+
+alter table DatasheetsItems add constraint FK_componer2 foreign key (idItem)
+      references Items (idItem) on delete restrict on update restrict;
+
+alter table DatasheetsLabors add constraint FK_crear foreign key (idProduct)
+      references Products (idProduct) on delete restrict on update restrict;
+
+alter table DatasheetsLabors add constraint FK_crear2 foreign key (idLabor)
+      references Labors (idLabor) on delete restrict on update restrict;
+
 alter table InitialItems add constraint FK_medir2 foreign key (idMeasure)
       references Measures (idMeasure) on delete restrict on update restrict;
 
-alter table Items add constraint FK_medir foreign key (idMeasure)
+alter table Items add constraint FK_medir1 foreign key (idMeasure)
       references Measures (idMeasure) on delete restrict on update restrict;
+
+alter table Products add constraint FK_medir3 foreign key (idSize)
+      references Sizes (idSize) on delete restrict on update restrict;
 
 alter table PurchaseOrders add constraint FK_hacer foreign key (idCard)
       references Users (idCard) on delete restrict on update restrict;
