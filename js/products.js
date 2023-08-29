@@ -124,8 +124,8 @@ function createDataRow(product) {
     <td>${product.size}</td>
     <td><span class="register-state ${product.isActive ? 'state-success' : 'state-wrong'}">${product.isActive ? 'Activo' : 'Inactivo'}</span></td>
     <td>
-        <a href="#" class="icon" title="Ver información" id="products-icon-view-${product.id}"><i class="fa-solid fa-eye text-success"></i></a>
-        <a href="#" class="icon" title="Editar usuario" id="products-icon-edit-${product.id}"><i class="fa-solid fa-user-pen text-neutral"></i></a>
+        <a href="#" class="icon" title="Ver hoja técnica" id="products-icon-view-${product.id}"><i class="fa-solid fa-sheet-plastic text-success"></i></a>
+        <a href="#" class="icon" title="Editar producto" id="products-icon-edit-${product.id}"><i class="fa-solid fa-pen text-neutral"></i></a>
         <a href="#" class="icon" title="${product.isActive ? 'Desactivar producto' : 'Activar producto'}" id="products-icon-state-${product.id}"><i class="fa-solid ${product.isActive ? 'fa-toggle-on text-success' : 'fa-toggle-off text-wrong'} "></i></a>
     </td>
     `

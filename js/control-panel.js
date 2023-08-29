@@ -10,10 +10,10 @@ const menuBtns = {
         })
     },
     ventas: {
-        products: createMenuBtn('Productos', ['fa-solid', 'fa-users'], function (event) {
+        products: createMenuBtn('Productos', ['fa-solid', 'fa-shirt'], function (event) {
             window.location.href = 'products.php'
         }),
-        datasheets: createMenuBtn('Hojas técnicas', ['fa-solid', 'fa-users'], function (event) {
+        addProducts: createMenuBtn('Agregar productos', ['fa-solid', 'fa-circle-plus'], function (event) {
             console.log('datasheets btn pressed')
         })
     },
@@ -32,10 +32,10 @@ const menuBtns = {
         })
     },
     recursos_humanos: {
-        labors: createMenuBtn('Mano de obra', ['fa-solid', 'fa-receipt'], function (event) {
+        labors: createMenuBtn('Mano de obra', ['fa-solid', 'fa-hand-fist'], function (event) {
             window.location.href = 'labors.php'
         }),
-        clients: createMenuBtn('Clientes', ['fa-solid', 'fa-receipt'], function (event) {
+        clients: createMenuBtn('Clientes', ['fa-solid', 'fa-handshake-simple'], function (event) {
             
         })
     }
