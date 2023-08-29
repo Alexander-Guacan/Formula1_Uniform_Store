@@ -11,7 +11,7 @@ const menuBtns = {
     },
     ventas: {
         products: createMenuBtn('Productos', ['fa-solid', 'fa-users'], function (event) {
-            console.log('products btn pressed')
+            window.location.href = 'products.php'
         }),
         datasheets: createMenuBtn('Hojas técnicas', ['fa-solid', 'fa-users'], function (event) {
             console.log('datasheets btn pressed')
