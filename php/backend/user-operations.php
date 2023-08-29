@@ -13,8 +13,9 @@
     }
 
     if (isset($_GET['read'])) {
-        $query = "SELECT *
-        FROM UserOperations";
+        $query = "SELECT UserOperations.idOperation, UserOperations.description, UserOperations.date, Users.idCard, Users.firstName, Users.lastName
+        FROM UserOperations JOIN Users
+        WHERE UserOperations.idCard = Users.idCard";
 
         $response = $connection->query($query);
 
@@ -22,9 +23,11 @@
 
         while ($row = $response->fetch_array()) {
             $json[] = array(
-                'id' => $row['idOperation'],
+                'idOperation' => $row['idOperation'],
                 'description' => $row['description'],
-                'officer' => $row['idCard'],
+                'idUser' => $row['idCard'],
+                'firstName' => $row['firstName'],
+                'lastName' => $row['lastName'],
                 'date' => $row['date']
             );
         }
