@@ -34,9 +34,10 @@ function addRow(operation) {
 
 function createDataRow(operation) {
     let dataRow = `
-    <td>${operation.id}</td>
+    <td>${operation.idOperation}</td>
     <td>${operation.description}</td>
-    <td>${operation.officer}</td>
+    <td>${operation.idUser}</td>
+    <td>${operation.firstName} ${operation.lastName}</td>
     <td>${operation.date}</td>
     `
     return dataRow
