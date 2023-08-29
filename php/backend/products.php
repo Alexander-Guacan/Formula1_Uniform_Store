@@ -17,11 +17,19 @@
                 'id' => $row['idProduct'],
                 'name' => $row['name'],
                 'size' => $row['size'],
-                'isActive' => $row['isActive']
+                'isActive' => $row['isActive'] == '1'
             );
         }
 
         echo json_encode($json);
+    }
+
+    if (isset($_POST['updateState'])) {
+        $reverseState = $_POST['isActive'] == 'true' ? 0 : 1;
+        $query = "UPDATE Products
+        SET isActive = $reverseState
+        WHERE idProduct = '{$_POST['idProduct']}'";
+        $result = $connection->query($query);
     }
 
 ?>
