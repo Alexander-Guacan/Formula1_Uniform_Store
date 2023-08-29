@@ -66,6 +66,14 @@ thead th:last-child {
     border-top-right-radius: var(--border-radius);
 }
 
+.thead-middle th:first-child {
+    border-top-left-radius: 0;
+}
+
+.thead-middle th:last-child {
+    border-top-right-radius: 0;
+}
+
 tbody,
 tfoot tr {
     color: var(--color-text-table-row);
