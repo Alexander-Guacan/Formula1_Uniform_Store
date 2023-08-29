@@ -129,7 +129,8 @@ formEditItem.form.addEventListener('submit', (event) => {
         price: formEditItem.form.querySelector('#input-edit-price').value,
         name: data['textarea-edit-name'],
         stock: formEditItem.form.querySelector('#input-edit-stock').value,
-        measure: data['select-edit-items-measure']
+        measure: data['select-edit-items-measure'],
+        isActive: itemsBodyTable.querySelector(`#row-${formEditItem.form.querySelector('#input-edit-id').value} .register-state`).textContent == 'Activo'
     }
 
     $.ajax({
