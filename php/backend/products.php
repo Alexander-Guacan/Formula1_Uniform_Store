@@ -69,4 +69,28 @@
 
         echo json_encode($response);
     }
+
+    if (isset($_GET['search'])) {
+        $name = $_GET['search'];
+
+        $query = "SELECT Products.idProduct, Products.name,
+        Products.isActive, Sizes.name as size
+        FROM Products JOIN Sizes
+        ON Sizes.idSize = Products.idSize
+        WHERE Products.name LIKE '$name%'";
+
+        $response = $connection->query($query);
+        $json = array();
+
+        while ($row = $response->fetch_array()) {
+            $json[] = array(
+                'id' => $row['idProduct'],
+                'name' => $row['name'],
+                'size' => $row['size'],
+                'isActive' => $row['isActive'] == '1'
+            );
+        }
+
+        echo json_encode($json);
+    }
 ?>
