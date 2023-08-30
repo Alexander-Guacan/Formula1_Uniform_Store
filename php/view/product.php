@@ -12,7 +12,7 @@ if ($_SESSION['user']['rol'] != 'ventas')
         </div>
         <div class="table-actions_right">
             <button type="button" class="btn" id="btn-add-item"><i class="fa-solid fa-plus"></i>&emsp;Agregar artículo</button>
-            <button type="button" class="btn" id="btn-add-item"><i class="fa-solid fa-plus"></i>&emsp;Agregar mano de obra</button>
+            <button type="button" class="btn" id="btn-add-labor"><i class="fa-solid fa-plus"></i>&emsp;Agregar mano de obra</button>
         </div>
     </article>
     <table>
@@ -38,12 +38,12 @@ if ($_SESSION['user']['rol'] != 'ventas')
                 <th>Accion</th>
             </tr>
         </thead>
-        <tbody class="table-body" id="items-table-body"></tbody>
-        <tfoot class="table-footer" id="items-table-footer">
+        <tbody class="table-body" id="labors-table-body"></tbody>
+        <tfoot class="table-footer" id="datasheet-table-footer">
             <tr>
                 <td colspan="4"></td>
                 <td>Total</td>
-                <td id="purchase-order_total-price">0</td>
+                <td id="product_total-price">0</td>
                 <td></td>
             </tr>
         </tfoot>
@@ -73,7 +73,7 @@ if ($_SESSION['user']['rol'] != 'ventas')
         </div>
         <div class="form-group">
             <label for="input-price" class="label">Precio</label>
-            <input type="number" name="input-price" id="input-price" class="input-text" min="0.01" step="0.01" max="99.99">
+            <input type="number" name="input-price" id="input-price" class="input-text" disabled>
         </div>
         <div class="form-group colspan-2">
             <label for="textarea-name" class="label">Nombre</label>
@@ -106,7 +106,7 @@ if ($_SESSION['user']['rol'] != 'ventas')
         </div>
         <div class="form-group">
             <label for="input-edit-price" class="label">Precio</label>
-            <input type="text" name="input-edit-price" id="input-edit-price" class="input-text">
+            <input type="text" name="input-edit-price" id="input-edit-price" class="input-text" disabled>
         </div>
         <div class="form-group colspan-2">
             <label for="textarea-edit-name" class="label">Nombre</label>
@@ -156,12 +156,94 @@ if ($_SESSION['user']['rol'] != 'ventas')
     </fieldset>
 </form>
 
+<form class="popup" id="form-add-labor">
+    <a class="icon popup_btn-close" href="#"><i class="fa-solid fa-xmark"></i></a>
+    <fieldset class="form-body form-login_body">
+        <legend class="form-title">
+            <h2>Agregar mano de obra</h2>
+        </legend>
+        <article class="form-group colspan-2">
+            <input type="search" id="search-labors" placeholder="Buscar mano de obra por descripción" class="input-search">
+        </article>
+        <div class="form-group">
+            <label for="input-id" class="label">Id</label>
+            <input type="text" name="input-id" id="input-id" class="input-text" disabled>
+        </div>
+        <div class="form-group">
+            <label for="input-hourly-rate" class="label">Salario/hora</label>
+            <input type="number" name="input-hourly-rate" id="input-hourly-rate" class="input-text" disabled>
+        </div>
+        <div class="form-group colspan-2">
+            <label for="textarea-description" class="label">Descripción</label>
+            <textarea name="textarea-description" id="textarea-description" class="textarea" disabled></textarea>
+        </div>
+        <div class="form-group">
+            <label for="input-work-hours" class="label">Horas de trabajo</label>
+            <input type="number" name="input-work-hours" id="input-work-hours" class="input-text" min="1" step="1" max="99">
+        </div>
+    </fieldset>
+    <div class="form-footer">
+        <button type="submit" class="btn">Agregar</button>
+        <div class="informative-msg">Mensaje de error</div>
+    </div>
+</form>
+
+<form class="popup" id="form-edit-labor">
+    <a class="icon popup_btn-close" href="#"><i class="fa-solid fa-xmark"></i></a>
+    <fieldset class="form-body form-login_body">
+        <legend class="form-title">
+            <h2>Editar mano de obra</h2>
+        </legend>
+        <div class="form-group">
+            <label for="input-edit-id" class="label">Id</label>
+            <input type="text" name="input-edit-id" id="input-edit-id" class="input-text" disabled>
+        </div>
+        <div class="form-group">
+            <label for="input-edit-hourly-rate" class="label">Salario/hora</label>
+            <input type="number" name="input-edit-hourly-rate" id="input-edit-hourly-rate" class="input-text" disabled>
+        </div>
+        <div class="form-group colspan-2">
+            <label for="textarea-edit-description" class="label">Descripción</label>
+            <textarea name="textarea-edit-description" id="textarea-edit-description" class="textarea" disabled></textarea>
+        </div>
+        <div class="form-group">
+            <label for="input-edit-work-hours" class="label">Horas de trabajo</label>
+            <input type="number" name="input-edit-work-hours" id="input-edit-work-hours" class="input-text" min="1" step="1" max="99">
+        </div>
+    </fieldset>
+    <div class="form-footer">
+        <button type="submit" class="btn">Guardar</button>
+        <div class="informative-msg">Mensaje de error</div>
+    </div>
+</form>
+
+<form class="popup" id="form-view-labor">
+    <a class="icon popup_btn-close" href="#"><i class="fa-solid fa-xmark"></i></a>
+    <fieldset class="form-body form-login_body">
+        <legend class="form-title">
+            <h2>Información de mano de obra</h2>
+        </legend>
+        <div class="form-group">
+            <label for="input-view-id" class="label">Id</label>
+            <input type="text" name="input-view-id" id="input-view-id" class="input-text" disabled>
+        </div>
+        <div class="form-group">
+            <label for="input-view-hourly-rate" class="label">Salario/hora</label>
+            <input type="number" name="input-view-hourly-rate" id="input-view-hourly-rate" class="input-text" min="0.01" step="0.01" max="999" disabled>
+        </div>
+        <div class="form-group colspan-2">
+            <label for="textarea-view-description" class="label">Descripción</label>
+            <textarea name="textarea-view-description" id="textarea-view-description" class="textarea" disabled></textarea>
+        </div>
+    </fieldset>
+</form>
+
 <aside class="popup system-msg">
     <div id="system-msg"></div>
     <a class="icon popup_btn-close" href="#"><i class="fa-solid fa-xmark"></i></a>
 </aside>
 
-<script type="module" src=""></script>
+<script type="module" src="../../js/product.js"></script>
 
 <?php
 include('./control-panel-footer.php');
