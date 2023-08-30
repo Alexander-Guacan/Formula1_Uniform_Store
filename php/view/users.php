@@ -1,7 +1,7 @@
 <?php
     include('./control-panel-header.php');
 
-    if ($_SESSION['user']['rol'] != 'admin')
+    if ($_SESSION['user']['rol'] != 'admin' && $_SESSION['user']['rol'] != 'super_admin')
         header('Location: control-panel.php');
 ?>
 
