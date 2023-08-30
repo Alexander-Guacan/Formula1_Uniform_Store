@@ -180,7 +180,7 @@ formAddProduct.form.addEventListener('submit', (event) => {
             if (response['productExist'])
                 return showErrorMsgOnForm(formAddProduct.form, 'El nombre del producto ya existe')
 
-            registerActivity(`Nuevo producto agregado. No: ${response}, nombre: ${product.name}`)
+            registerActivity(`Nuevo producto agregado. Nombre: ${product.name}`)
             showSystemMsg(systemMsg.popup, 'success', 'Producto creado exitosamente')
             setTimeout(() => {
                 window.location.href = 'products.php'
@@ -559,10 +559,10 @@ function cleanForm(form) {
 }
 
 function registerActivity(description) {
-    /* $.ajax({
+    $.ajax({
         url: '../backend/user-operations.php',
         type: 'POST',
         data: { insert: '', description },
         success: function (response) {}
-    }) */
+    })
 }
