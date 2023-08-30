@@ -20,12 +20,6 @@ $.ajax({
     }
 })
 
-let btnCreatePDF = document.querySelector('#btn-create-pdf')
-
-btnCreatePDF.addEventListener('click', (event => {
-    console.log(btnCreatePDF.id)
-}))
-
 function showPurchaseOrders(purchaseOrders) {
     if (!purchaseOrders.length)
         return purchaseOrdersFooterTable.innerHTML = `
@@ -107,7 +101,6 @@ function showPurchaseOrdersDetails(idPurchaseOrder) {
             })
 
             purchaseOrderDetails.table.querySelector('#purchase-order_total-price').textContent = totalPrice.toFixed(2)
-            btnCreatePDF.id = idPurchaseOrder
         }
     })
 
