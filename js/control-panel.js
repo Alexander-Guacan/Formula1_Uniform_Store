@@ -14,7 +14,7 @@ const menuBtns = {
             window.location.href = 'products.php'
         }),
         addProducts: createMenuBtn('Agregar productos', ['fa-solid', 'fa-circle-plus'], function (event) {
-            console.log('datasheets btn pressed')
+            window.location.href = 'product.php'
         })
     },
     bodega: {
