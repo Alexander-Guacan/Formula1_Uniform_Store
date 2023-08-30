@@ -109,7 +109,7 @@
         echo json_encode($json);
     }
 
-    /* if (isset($_GET['searchActives'])) {
+    if (isset($_GET['searchActives'])) {
         $description = $_GET['searchActives'];
 
         $query = "SELECT * FROM Labors
@@ -127,6 +127,6 @@
         }
 
         echo json_encode($json);
-    } */
+    }
 
 ?>
