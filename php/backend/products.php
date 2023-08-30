@@ -2,6 +2,57 @@
 
     include_once('./connection.php');
 
+    if (isset($_POST['add'])) {
+        $product = json_decode($_POST['add'], true);
+        $items = json_decode($_POST['items'], true);
+        $labors = json_decode($_POST['labors'], true);
+
+        $queryProductExist = "SELECT * FROM Products
+        WHERE name = '{$product['name']}'";
+
+        $productExist = $connection->query($queryProductExist)->num_rows > 0;
+
+        $response = array(
+            'productExist' => $productExist
+        );
+
+        if ($productExist) {
+            echo json_encode($response);
+            return;
+        }
+
+        $queryIdSize = "SELECT idSize FROM Sizes
+        WHERE name = '{$product['size']}'";
+
+        $idSize = $connection->query($queryIdSize)->fetch_array()['idSize'];
+
+        $queryNewProduct = "INSERT INTO Products (name, idSize)
+        VALUES ('{$product['name']}', $idSize)";
+
+        $connection->query($queryNewProduct);
+
+        $queryIdProduct = "SELECT idProduct FROM Products
+        ORDER BY idProduct DESC LIMIT 1";
+
+        $idProduct = $connection->query($queryIdProduct)->fetch_array()['idProduct'];
+
+        foreach ($items as $item) {
+            $queryItemDatasheet = "INSERT INTO DatasheetsItems (idProduct, idItem, itemQuantity)
+            VALUES ($idProduct, {$item['id']}, {$item['quantity']})";
+
+            $connection->query($queryItemDatasheet);
+        }
+
+        foreach ($labors as $labor) {
+            $queryLaborDatasheet = "INSERT INTO DatasheetsLabors (idProduct, idLabor, workHours)
+            VALUES ($idProduct, {$labor['id']}, {$labor['workHours']})";
+
+            $connection->query($queryLaborDatasheet);
+        }
+
+        echo json_encode($response);
+    }
+
     if (isset($_GET['read'])) {
         $query = "SELECT Products.idProduct, Products.name,
         Products.isActive, Sizes.name as size
