@@ -16,7 +16,7 @@
         $query = "SELECT UserOperations.idOperation, UserOperations.description, UserOperations.date, Users.idCard, Users.firstName, Users.lastName
         FROM UserOperations JOIN Users
         WHERE UserOperations.idCard = Users.idCard
-        ORDER BY UserOperations.idOperation ASC";
+        ORDER BY UserOperations.idOperation DESC";
 
         $response = $connection->query($query);
 
