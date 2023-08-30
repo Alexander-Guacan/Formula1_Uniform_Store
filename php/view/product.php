@@ -52,8 +52,8 @@ if ($_SESSION['user']['rol'] != 'ventas')
         <div class="table-actions_left">
         </div>
         <div class="table-actions_right">
-            <button type="button" class="btn state-success" id="btn-buy-items"><i class="fa-solid fa-check"></i>&emsp;Crear</button>
-            <button type="button" class="btn state-wrong" id="btn-cancel-order"><i class="fa-solid fa-xmark"></i>&emsp;Cancelar</button>
+            <button type="button" class="btn state-success" id="btn-create-product"><i class="fa-solid fa-check"></i>&emsp;Crear</button>
+            <button type="button" class="btn state-wrong" id="btn-cancel-creation"><i class="fa-solid fa-xmark"></i>&emsp;Cancelar</button>
         </div>
     </article>
 </section>
@@ -237,6 +237,28 @@ if ($_SESSION['user']['rol'] != 'ventas')
         </div>
     </fieldset>
 </form>
+
+<form class="popup" id="form-add-product">
+    <a class="icon popup_btn-close" href="#"><i class="fa-solid fa-xmark"></i></a>
+    <fieldset class="form-body form-login_body">
+        <legend class="form-title">
+            <h2>Agregar producto</h2>
+        </legend>
+        <div class="form-group colspan-2">
+            <label for="textarea-name" class="label">Nombre</label>
+            <textarea name="textarea-name" id="textarea-name" class="textarea"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="select-products-size" class="label">Talla</label>
+            <select name="select-products-size" id="select-products-size" class="select"></select>
+        </div>
+    </fieldset>
+    <div class="form-footer">
+        <button type="submit" class="btn">Crear producto</button>
+        <div class="informative-msg">Mensaje de error</div>
+    </div>
+</form>
+
 
 <aside class="popup system-msg">
     <div id="system-msg"></div>
