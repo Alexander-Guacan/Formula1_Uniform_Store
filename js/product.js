@@ -2,6 +2,17 @@ let itemsBodyTable = document.querySelector('#items-table-body')
 let laborsBodyTable = document.querySelector('#labors-table-body')
 let datasheetFooterTable = document.querySelector('#datasheet-table-footer')
 
+let sizes = ''
+
+$.ajax({
+    url: '../backend/sizes.php',
+    type: 'GET',
+    data: { read: '' },
+    success: function (response) {
+        sizes = JSON.parse(response)
+    }
+})
+
 let measures = ''
 
 $.ajax({
@@ -25,9 +36,9 @@ btnAddLabor.addEventListener('click', (event) => {
     openPopup(formAddLabor.form)
 })
 
-let btnCancelPurchaseOrder = document.querySelector('#btn-cancel-order')
+let btnCancelCreation = document.querySelector('#btn-cancel-creation')
 
-btnCancelPurchaseOrder.addEventListener('click', (event) => {
+btnCancelCreation.addEventListener('click', (event) => {
     window.location.href = 'products.php'
 })
 
@@ -40,27 +51,14 @@ systemMsg.btnClose.addEventListener('click', (event) => {
     closePopup(systemMsg.popup)
 })
 
-let btnSubmitPurchaseOrder = document.querySelector('#btn-buy-items')
+let btnCreateProduct = document.querySelector('#btn-create-product')
 
-btnSubmitPurchaseOrder.addEventListener('click', (event) => {
+btnCreateProduct.addEventListener('click', (event) => {
     if (!itemsInserted.length || !laborsInserted.length)
         return showSystemMsg(systemMsg.popup, 'wrong', 'No se han agregado items o manos de obra a la ficha técnica')
 
-    /* $.ajax({
-        url: '../backend/products.php',
-        type: 'POST',
-        data: { add: '', items: JSON.stringify(itemsInserted), labors: JSON.stringify(laborsInserted) },
-        success: function (response) {
-            registerActivity(`Nuevo producto agregado. No: ${response}`)
-        }
-    }) */
-
-    console.log(totalPrice)
-
-    showSystemMsg(systemMsg.popup, 'success', 'Compra realizada exitosamente')
-    setTimeout(() => {
-        window.location.href = 'items.php'
-    }, 3000);
+    openPopup(formAddProduct.form)
+    chargeSelect(formAddProduct.select, sizes, '')
 })
 
 let formAddItem = {
@@ -146,6 +144,51 @@ formAddLabor.form.addEventListener('submit', (event) => {
     closePopup(formAddLabor.form)
     cleanForm(formAddLabor.form)
     resetForm(formAddLabor.form)
+})
+
+let formAddProduct = {
+    form: document.querySelector('#form-add-product'),
+    btnClose: document.querySelector('#form-add-product .popup_btn-close'),
+    btnSubmit: document.querySelector('#form-add-product .form-footer button'),
+    select: document.querySelector('#form-add-product #select-products-size'),
+}
+
+formAddProduct.btnClose.addEventListener('click', (event) => {
+    closePopup(formAddProduct.form)
+})
+
+formAddProduct.form.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    const data = Object.fromEntries(new FormData(event.target))
+
+    if (incompleteForm(data))
+        return showErrorMsgOnForm(formAddProduct.form, 'Formulario incompleto')
+
+    let product = {
+        name: data['textarea-name'],
+        size: data['select-products-size']
+    }
+
+    $.ajax({
+        url: '../backend/products.php',
+        type: 'POST',
+        data: { add: JSON.stringify(product), items: JSON.stringify(itemsInserted), labors: JSON.stringify(laborsInserted) },
+        success: function (response) {            
+            response = JSON.parse(response)
+
+            if (response['productExist'])
+                return showErrorMsgOnForm(formAddProduct.form, 'El nombre del producto ya existe')
+
+            registerActivity(`Nuevo producto agregado. No: ${response}, nombre: ${product.name}`)
+            showSystemMsg(systemMsg.popup, 'success', 'Producto creado exitosamente')
+            setTimeout(() => {
+                window.location.href = 'products.php'
+            }, 3000);
+        }
+    })
+
+    closePopup(formAddProduct.form)
 })
 
 let inputSearchItems = document.querySelector('#search-items')
@@ -302,7 +345,7 @@ function incompleteForm(data) {
     return false
 }
 
-function chargeSelect(selectObject, options, measureSelectDefault) {
+function chargeSelect(selectObject, options, optionSelectDefault) {
     selectObject.innerHTML = ''
     options.forEach(option => {
         let optionHTML = document.createElement('option')
@@ -310,7 +353,7 @@ function chargeSelect(selectObject, options, measureSelectDefault) {
         optionHTML.setAttribute('class', 'option')
         optionHTML.textContent = option.name
 
-        if (option.name == measureSelectDefault)
+        if (option.name == optionSelectDefault)
             optionHTML.setAttribute('selected', '')
 
         selectObject.appendChild(optionHTML)
