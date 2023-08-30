@@ -20,6 +20,14 @@ $.ajax({
     }
 })
 
+let btnReportPurchaseOrder = document.querySelector('#btn-report-purchase-order')
+
+btnReportPurchaseOrder.addEventListener('click', (event) => {
+    let url = `../backend/report.php?pdf=${btnReportPurchaseOrder.id}`
+
+    window.open(url, '_blank').focus()
+})
+
 function showPurchaseOrders(purchaseOrders) {
     if (!purchaseOrders.length)
         return purchaseOrdersFooterTable.innerHTML = `
@@ -101,6 +109,7 @@ function showPurchaseOrdersDetails(idPurchaseOrder) {
             })
 
             purchaseOrderDetails.table.querySelector('#purchase-order_total-price').textContent = totalPrice.toFixed(2)
+            btnReportPurchaseOrder.id = idPurchaseOrder
         }
     })
 
