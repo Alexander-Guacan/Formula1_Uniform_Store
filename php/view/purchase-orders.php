@@ -45,9 +45,15 @@ if ($_SESSION['user']['rol'] != 'bodega')
             </tr>
         </tfoot>
     </table>
+    <div class="table-actions">
+        <div class="table-actions_left"></div>
+        <div class="table-actions_right">
+            <button type="button" class="btn state-wrong" id="btn-create-pdf"><i class="fa-solid fa-file"></i>&emsp;PDF</button>
+        </div>
+    </div>
 </div>
 
- <script src="../../js/purchase-orders.js"></script>
+<script src="../../js/purchase-orders.js"></script>
 
 <?php
 include('./control-panel-footer.php');
