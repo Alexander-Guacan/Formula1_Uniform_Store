@@ -38,6 +38,35 @@ const menuBtns = {
         clients: createMenuBtn('Clientes', ['fa-solid', 'fa-handshake-simple'], function (event) {
             
         })
+    },
+    super_admin: {
+        users: createMenuBtn('Usuarios', ['fa-solid', 'fa-users'], function (event) {
+            window.location.href = 'users.php'
+        }),
+        registers: createMenuBtn('Actividades', ['fa-solid', 'fa-rectangle-list'], function (event) {
+            window.location.href = 'user-operations.php'
+        }),
+        products: createMenuBtn('Productos', ['fa-solid', 'fa-shirt'], function (event) {
+            window.location.href = 'products.php'
+        }),
+        addProducts: createMenuBtn('Agregar productos', ['fa-solid', 'fa-circle-plus'], function (event) {
+            window.location.href = 'product.php'
+        }),
+        items: createMenuBtn('Articulos', ['fa-solid', 'fa-rectangle-list'], function (event) {
+            window.location.href = 'items.php'
+        }),
+        initialInventory: createMenuBtn('Inventario inicial', ['fa-solid', 'fa-warehouse'], function (event) {
+            window.location.href = 'initial-items.php'
+        }),
+        purchaseOrder: createMenuBtn('Orden de compra', ['fa-solid', 'fa-cash-register'], function (event) {
+            window.location.href = 'purchase-order.php'
+        }),
+        purchaseOrders: createMenuBtn('Ordenes de compra', ['fa-solid', 'fa-receipt'], function (event) {
+            window.location.href = 'purchase-orders.php'
+        }),
+        labors: createMenuBtn('Mano de obra', ['fa-solid', 'fa-hand-fist'], function (event) {
+            window.location.href = 'labors.php'
+        })
     }
 }
 
