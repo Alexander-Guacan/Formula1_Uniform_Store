@@ -15,7 +15,8 @@
     if (isset($_GET['read'])) {
         $query = "SELECT UserOperations.idOperation, UserOperations.description, UserOperations.date, Users.idCard, Users.firstName, Users.lastName
         FROM UserOperations JOIN Users
-        WHERE UserOperations.idCard = Users.idCard";
+        WHERE UserOperations.idCard = Users.idCard
+        ORDER BY UserOperations.idOperation ASC";
 
         $response = $connection->query($query);
 
