@@ -44,11 +44,11 @@
         </div>
         <div class="form-group">
             <label for="input-price" class="label">Precio</label>
-            <input type="number" name="input-price" id="input-price" class="input-text" min="0.1" step="0.01" max="99.99">
+            <input type="number" name="input-price" id="input-price" class="input-text" min="0.1" step="0.01" max="100">
         </div>
         <div class="form-group colspan-2">
             <label for="textarea-name" class="label">Nombre</label>
-            <textarea name="textarea-name" id="textarea-name" class="textarea"></textarea>
+            <textarea name="textarea-name" id="textarea-name" class="textarea js-input-alphanumeric"></textarea>
         </div>
         <div class="form-group">
             <label for="input-stock" class="label">Cantidad</label>
@@ -81,7 +81,7 @@
         </div>
         <div class="form-group colspan-2">
             <label for="textarea-edit-name" class="label">Nombre</label>
-            <textarea name="textarea-edit-name" id="textarea-edit-name" cols="30" rows="10" class="textarea"></textarea>
+            <textarea name="textarea-edit-name" id="textarea-edit-name" cols="30" rows="10" class="textarea js-input-alphanumericgit"></textarea>
         </div>
         <div class="form-group">
             <label for="input-edit-stock" class="label">Cantidad</label>
