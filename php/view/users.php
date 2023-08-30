@@ -40,19 +40,19 @@
         </legend>
         <div class="form-group">
             <label for="input-first-name" class="label">Nombre</label>
-            <input type="text" name="input-first-name" id="input-first-name" class="input-text" placeholder="john">
+            <input type="text" name="input-first-name" id="input-first-name" class="input-text js-input-lowercase" placeholder="john">
         </div>
         <div class="form-group">
             <label for="input-last-name" class="label">Apellido</label>
-            <input type="text" name="input-last-name" id="input-last-name" class="input-text" placeholder="doe">
+            <input type="text" name="input-last-name" id="input-last-name" class="input-text js-input-lowercase" placeholder="doe">
         </div>
         <div class="form-group">
             <label for="input-username" class="label">Usuario</label>
-            <input type="text" name="input-username" id="input-username" class="input-text" placeholder="johndoe123">
+            <input type="text" name="input-username" id="input-username" class="input-text js-input-username" placeholder="johndoe123">
         </div>
         <div class="form-group">
             <label for="input-id-card" class="label">Cédula</label>
-            <input type="text" name="input-id-card" id="input-id-card" class="input-text" placeholder="1725437437">
+            <input type="text" name="input-id-card" id="input-id-card" class="input-text js-input-number" placeholder="1725437437" minlength="10" maxlength="10">
         </div>
         <div class="form-group">
             <label for="input-email" class="label">Correo electrónico</label>
@@ -60,7 +60,7 @@
         </div>
         <div class="form-group">
             <label for="input-mobile-number" class="label">Celular</label>
-            <input type="text" name="input-mobile-number" id="input-mobile-number" class="input-text" placeholder="0924536264">
+            <input type="text" name="input-mobile-number" id="input-mobile-number js-input-number" class="input-text" placeholder="0924536264" minlength="10" maxlength="10">
         </div>
         <div class="form-group">
             <label for="select-user-rol" class="label">Rol</label>
@@ -89,19 +89,19 @@
         </legend>
         <div class="form-group">
             <label for="input-edit-first-name" class="label">Nombre</label>
-            <input type="text" name="input-edit-first-name" id="input-edit-first-name" class="input-text">
+            <input type="text" name="input-edit-first-name" id="input-edit-first-name" class="input-text js-input-lowercase">
         </div>
         <div class="form-group">
             <label for="input-edit-last-name" class="label">Apellido</label>
-            <input type="text" name="input-edit-last-name" id="input-edit-last-name" class="input-text">
+            <input type="text" name="input-edit-last-name" id="input-edit-last-name" class="input-text js-input-lowercase">
         </div>
         <div class="form-group">
             <label for="input-edit-username" class="label">Usuario</label>
-            <input type="text" name="input-edit-username" id="input-edit-username" class="input-text">
+            <input type="text" name="input-edit-username" id="input-edit-username" class="input-text js-input-username">
         </div>
         <div class="form-group">
             <label for="input-edit-id-card" class="label">Cédula</label>
-            <input type="text" name="input-edit-id-card" id="input-edit-id-card" class="input-text" disabled>
+            <input type="text" name="input-edit-id-card" id="input-edit-id-card" class="input-text js-input-number" disabled>
         </div>
         <div class=" form-group">
             <label for="input-edit-email" class="label">Correo electrónico</label>
@@ -109,7 +109,7 @@
         </div>
         <div class="form-group">
             <label for="input-edit-mobile-number" class="label">Celular</label>
-            <input type="text" name="input-edit-mobile-number" id="input-edit-mobile-number" class="input-text">
+            <input type="text" name="input-edit-mobile-number" id="input-edit-mobile-number" class="input-text js-input-number" minlength="10" maxlength="10">
         </div>
         <div class="form-group">
             <label for="select-edit-user-rol" class="label">Rol</label>

@@ -43,6 +43,24 @@ $.ajax({
     }
 })
 
+addInputValidation = (jsClass, regex) => {
+    document.querySelectorAll(jsClass).forEach((input) => {
+        input.addEventListener('keydown', (event) => {
+            if (!regex.test(event.key))
+                event.preventDefault()
+        })
+    })
+}
+
+validations = {
+    lowercase: /[a-z]/,
+    number: /[0-9]/,
+    username: /[0-9a-z]/
+}
+
+addInputValidation('.js-input-lowercase', validations.lowercase)
+addInputValidation('.js-input-number', validations.number)
+addInputValidation('.js-input-username', validations.username)
 
 inputSearch.addEventListener('keyup', (event) => {
     if (inputSearch.value == '')
