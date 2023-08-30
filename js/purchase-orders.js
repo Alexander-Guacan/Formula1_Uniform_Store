@@ -8,7 +8,6 @@ let purchaseOrderDetails = {
 
 purchaseOrderDetails.btnClose.addEventListener('click', (event) => {
     closePopup(purchaseOrderDetails.table)
-    purchaseOrderDetails.table.querySelector('#items-table-body').innerHTML = ''
 })
 
 $.ajax({
@@ -20,6 +19,12 @@ $.ajax({
         showPurchaseOrders(purchaseOrders)
     }
 })
+
+let btnCreatePDF = document.querySelector('#btn-create-pdf')
+
+btnCreatePDF.addEventListener('click', (event => {
+    console.log(btnCreatePDF.id)
+}))
 
 function showPurchaseOrders(purchaseOrders) {
     if (!purchaseOrders.length)
@@ -77,12 +82,14 @@ function createRowPurchaseOrderDetail(item) {
 function addEventListenerToTableAction(purchaseOrder) {
     let row = purchaseOrdersBodyTable.querySelector(`#row-${purchaseOrder.id}`)
     row.querySelector(`#purchase-orders-icon-view-${purchaseOrder.id}`).addEventListener('click', (event) => {
+        purchaseOrderDetails.table.querySelector('#items-table-body').innerHTML = ''
         openPopup(purchaseOrderDetails.table)
         showPurchaseOrdersDetails(purchaseOrder.id)
     })
 }
 
 function showPurchaseOrdersDetails(idPurchaseOrder) {
+
     $.ajax({
         url: '../backend/purchase-orders-details.php',
         type: 'GET',
@@ -100,6 +107,7 @@ function showPurchaseOrdersDetails(idPurchaseOrder) {
             })
 
             purchaseOrderDetails.table.querySelector('#purchase-order_total-price').textContent = totalPrice.toFixed(2)
+            btnCreatePDF.id = idPurchaseOrder
         }
     })
 
