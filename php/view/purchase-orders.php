@@ -45,6 +45,12 @@ if ($_SESSION['user']['rol'] != 'bodega' && $_SESSION['user']['rol'] != 'super_a
             </tr>
         </tfoot>
     </table>
+    <article class="table-actions">
+        <div class="table-actions_left"></div>
+        <div class="table-actions_right">
+            <button type="button" class="btn state-wrong" id="btn-report-purchase-order"><i class="fa-solid fa-file-pdf"></i>&emsp;PDF</button>
+        </div>
+    </article>
 </div>
 
 <script src="../../js/purchase-orders.js"></script>
